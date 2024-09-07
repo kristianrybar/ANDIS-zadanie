@@ -1,0 +1,5 @@
+.homePageContainer {
+    @apply w-full grow max-w-[1360px] mx-auto relative bg-white p-4 flex;
+}
+
+

@@ -1,0 +1,23 @@
+body {
+  min-height: 100dvh;
+  background-color: var(--base-bg);
+}
+
+#root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  /* COLOR VARS */
+  --base-bg:#ededed;
+
+  --color1: #98A1A6;
+  --color2: #4F554E;
+  --color3: #4F554E;
+  --color4: #34332C;
+  --color5: #252827;
+}
+
+

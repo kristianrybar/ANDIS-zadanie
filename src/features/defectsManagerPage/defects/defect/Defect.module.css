@@ -1,0 +1,3 @@
+.defect {
+    @apply border flex justify-between p-2 text-sm;
+}

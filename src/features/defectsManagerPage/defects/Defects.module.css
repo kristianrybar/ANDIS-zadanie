@@ -1,0 +1,15 @@
+.defects {
+    @apply flex flex-col p-3;
+
+    h1 {
+        @apply font-bold;
+    }
+
+    .scrollDefects {
+        @apply overflow-y-auto;
+
+        .defectsList {
+            
+        }
+    }
+}

@@ -1,0 +1,37 @@
+.wrapper {
+  @apply flex flex-col mb-1 relative;
+
+  &.disabled {
+    @apply opacity-50 cursor-auto;
+  }
+
+  .inputLabel {
+    @apply text-sm font-medium;
+  }
+
+  .dropdown{
+    @apply flex justify-center items-center h-[40px];
+  }
+  
+  .control {
+    @apply h-[40px] flex w-full justify-between items-center border gap-8 rounded-md px-3 cursor-pointer;
+    &.invalid {
+      @apply border-red-500;
+    }
+  }
+  .menu {
+    @apply rounded-b-lg border-t-0;
+  }
+  
+  .actionIcon {
+    @apply absolute text-[1.2rem] top-[11px] right-[37px] cursor-pointer text-gray-600 hover:text-red-500;
+  }
+
+  .hint {
+    white-space: pre-wrap;
+    @apply text-sm;
+  }
+
+
+
+}

@@ -65,8 +65,6 @@ const _assingTechnicalObjectsToDefect = (defects, technicalObjects, technicalObj
 
     const defectsWithTechObjs = defects.map(d => {
         const techObj = updatedTechObjects2.find(techO => techO.technicalObjectID == d.technicalObjectID)
-        if (!techObj) 
-            return d
 
         return {
             ...d,

@@ -3,6 +3,7 @@ import { mock_GET_ZADANIE_DATA } from './_mockApi/mock_GET_ZADANIE_DATA'
 import { TDefect } from './_t/TDefect'
 import FiltersSidebar from './filtersSidebar/FiltersSidebar'
 import Defects from './defects/Defects'
+import Test from './Test'
 import css from './DefectsManagerPage.module.css'
 
 
@@ -23,20 +24,7 @@ const DefectsManagerPage = () => {
         getMockCoreData()
     }, [])
 
-    useEffect(() => {
-        if (!defects.length) 
-            return
-        
-        let count = 0
-        const mmm = defects.forEach(d => d.defectType.voltageLevelIdentifier
-            ? count++
-            : console.log(d)
-        )
-        console.log(count)
-        console.log(mmm)
-    }, [defects])
-
-    return (
+    return (<>
         <div className={css.homePageContainer}>
 
             <div className='border w-3/12'>
@@ -50,7 +38,9 @@ const DefectsManagerPage = () => {
                 />
             </div>
 
-        </div>
+            
+
+        </div><Test /></>
     )
 }
 

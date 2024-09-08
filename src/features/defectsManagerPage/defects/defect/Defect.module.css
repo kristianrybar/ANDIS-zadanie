@@ -1,3 +1,30 @@
 .defect {
-    @apply border flex justify-between p-2 text-sm;
+    @apply border border-[--color5] border-b-0 flex justify-between items-center pl-3 py-1 text-sm;
+    &:hover {
+        box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 1px 4px rgba(0, 0, 0, 0.44);
+        .arrowRight {
+            @apply text-gray-700 cursor-pointer;
+        }
+    }
+    &:first-child {
+        @apply border-t;
+    }
+    &:last-child {
+        @apply border-b;
+    }
+    &:nth-child(odd) {
+        @apply bg-[--color2];
+    }
+    &:nth-child(even) {
+        @apply bg-[--color3];
+    }
+    .checkbox {
+        @apply w-5 h-5;
+        &:checked {
+            @apply w-8 h-8;
+        }
+    }
+    .arrowRight {
+        @apply text-[1.5rem] text-gray-400 px-3 self-stretch flex items-center;
+    }
 }

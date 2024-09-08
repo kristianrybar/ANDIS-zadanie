@@ -11,13 +11,13 @@ body {
 
 :root {
   /* COLOR VARS */
-  --base-bg:#ededed;
+  --base-bg:#9f9f9f;
 
-  --color1: #98A1A6;
-  --color2: #4F554E;
-  --color3: #4F554E;
-  --color4: #34332C;
-  --color5: #252827;
+  --color1: #f9f9f9;
+  --color2: #eeeeee;
+  --color3: #e1e1e1;
+  --color4: #737373;
+  --color5: #404040;
 }
 
 

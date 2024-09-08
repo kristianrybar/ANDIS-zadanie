@@ -1,9 +1,23 @@
 .defects {
     @apply flex flex-col p-3;
 
+    .filtersBar {
+        @apply flex justify-between;
+        .searchbar {
+            input {
+                @apply border rounded px-3 py-1;
+            }
+        }
+        .dropdown {
+            
+        }
+    }
+
     h1 {
         @apply font-bold;
     }
+
+
 
     .scrollDefects {
         @apply overflow-y-auto;

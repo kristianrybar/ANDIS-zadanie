@@ -1,0 +1,6 @@
+.uiInputWrapper {
+    @apply block w-full h-[40px];
+    input {
+        @apply h-full w-full;
+    }
+}

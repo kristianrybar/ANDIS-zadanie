@@ -9,7 +9,8 @@ import css from './UiDropdown.module.css'
 type Props = {
     value: Option | string
     options: string[]
-    onChange: (option: Option) => void // ???
+    onChange: (option: Option) => void
+    // OPTIONAL
     label?: string
     placeholder?: string
     hint?: string
@@ -17,7 +18,7 @@ type Props = {
     showIcon?: boolean
     disabled?: boolean
     onFocus?: (event) => void
-    onClearOption?: () => any // ???
+    onClearOption?: () => any
 }
 
 

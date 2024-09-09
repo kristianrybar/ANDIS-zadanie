@@ -1,5 +1,5 @@
 .wrapper {
-  @apply flex flex-col mb-1 relative;
+  @apply flex flex-col relative;
 
   &.disabled {
     @apply opacity-50 cursor-auto;
@@ -9,12 +9,13 @@
     @apply text-sm font-medium;
   }
 
-  .dropdown{
+  .dropdown {
     @apply flex justify-center items-center h-[40px];
   }
   
   .control {
-    @apply h-[40px] flex w-full justify-between items-center border gap-8 rounded-md px-3 cursor-pointer;
+    @apply h-[40px] flex w-full justify-between items-center gap-8 rounded-md px-3 cursor-pointer;
+
     &.invalid {
       @apply border-red-500;
     }

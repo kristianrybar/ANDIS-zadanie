@@ -1,6 +1,12 @@
 .uiInputWrapper {
-    @apply block w-full h-[40px];
+    @apply w-full h-[40px] flex justify-center items-center;
     input {
-        @apply h-full w-full;
+        @apply h-full w-full border rounded px-3 py-1;
+    }
+    .checkbox {
+        @apply w-5 h-5;
+        &:checked {
+            @apply w-8 h-8;
+        }
     }
 }

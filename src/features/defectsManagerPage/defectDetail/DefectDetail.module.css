@@ -1,0 +1,11 @@
+.defectDetail {
+    @apply bg-[--color1];
+    .header {
+        .goBack {
+            @apply flex items-center gap-2 text-[1.5rem] leading-[0.8] cursor-pointer ml-3 py-2 w-max;
+            svg {
+                @apply text-[1.5rem];
+            }
+        }
+    }
+}

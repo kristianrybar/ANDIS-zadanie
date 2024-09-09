@@ -2,14 +2,15 @@
     @apply flex flex-col p-3;
 
     .filtersBar {
-        @apply flex justify-between;
+        @apply flex justify-start items-center gap-3;
         .searchbar {
-            input {
-                @apply border rounded px-3 py-1;
-            }
+
         }
         .dropdown {
             
+        }
+        .datePickerRange {
+            @apply ml-auto;
         }
     }
 

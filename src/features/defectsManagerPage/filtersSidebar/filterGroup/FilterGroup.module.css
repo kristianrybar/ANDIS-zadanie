@@ -4,6 +4,10 @@
         @apply font-medium mb-1;
     }
     .options {
-        @apply w-full flex flex-col items-start gap-y-1;
+        @apply w-full flex flex-col items-start justify-center gap-y-1;
+
+        .count {
+            @apply relative right-1 top-[2px] text-stone-500 font-normal text-[13px];
+        }
     }
 }

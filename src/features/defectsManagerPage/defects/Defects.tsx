@@ -30,8 +30,21 @@ const Defects = (props: Props) => {
         .sort((a, b) => sortByDate(a, b, dropdownQuery))
         .filter(defect => filterByDateRange(dateFilter, defect.createdDTime))
         .filter(defect => filterByPersistenceStatus(defect, props.filter.persistenceOptions))
+        .filter(defect => {
+            if (!defect) 
+                return true
 
+            const activeOptions = props.filter.severityLevelOptions.filter(option => option.isActive)
+            if (!activeOptions.length) 
+                return true
         
+            if (activeOptions.length == 4) 
+                return defect.defectType.defaultSeverityLevel
+        
+            return activeOptions.some(option => option.title == defect.defectType.defaultSeverityLevel)
+        })
+
+
     return (
         <div className={css.defects}>
             <div className={css.filtersBar}>
@@ -60,14 +73,17 @@ const Defects = (props: Props) => {
 
             <div className={css.scrollDefects}>
                 <div className={css.defectsList}>
-                    {filteredDefects.map(d => 
-                        <Defect
-                            key={d.defectID}
-                            defect={d}
-                            onOpenDetail={props.onOpenDetail}
-                            onCheckbox={() => console.log}
-                        />
-                    )}
+                    {filteredDefects.length
+                        ? filteredDefects.map(d => 
+                            <Defect
+                                key={d.defectID}
+                                defect={d}
+                                onOpenDetail={props.onOpenDetail}
+                                onCheckbox={() => console.log}
+                            />
+                        )
+                        : <div className={css.noDefects}>Žiadne výsledky</div>
+                    }
                 </div>
             </div>
         </div>

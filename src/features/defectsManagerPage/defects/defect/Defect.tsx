@@ -31,7 +31,10 @@ const Defect = (props: Props) => {
                 <div>{d.technicalObject.municipality}</div>
             </div>
             <div>
-                isPersistent: {props.defect.isPersistent ? 'Áno' : 'Nie'}
+                isPersistent: {props.defect.isPersistent ? <b>ANO</b> : <b>NIE</b>}
+            </div>
+            <div>
+                severityLevel: <b>{d.defectType.defaultSeverityLevel}</b>
             </div>
             <div 
                 className={css.arrowRight}

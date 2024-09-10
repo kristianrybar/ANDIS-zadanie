@@ -1,6 +1,6 @@
 export type TDefectType = {
     defectTypeIdentifier: string
     defectTypeName: string
-    defaultSeverityLevel: Date
+    defaultSeverityLevel: string
     voltageLevelIdentifier: string
 }

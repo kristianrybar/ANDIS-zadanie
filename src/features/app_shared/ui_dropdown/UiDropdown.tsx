@@ -35,7 +35,7 @@ const UiDropdown = (props: Props) => {
                 menuClassName={`${css.menu}`}
                 options={props.options}
                 onFocus={props.onFocus}
-                onChange={(option: Option) => props.onChange(option)} // ???
+                onChange={(option: Option) => props.onChange(option)}
                 value={props.value || ''}
                 placeholder={props.placeholder || 'Zoradiť...'}
                 arrowClosed={<IoIosArrowDown />}

@@ -1,5 +1,7 @@
-import { useState } from 'react'
+import { TDefect } from '../_t/TDefect'
 import { TVoltageLevel } from '../_t/TVoltageLevel'
+import { togglePersistenceOption } from './_utils/togglePersistenceOption'
+import { toggleSeverityLevelOption } from './_utils/toggleSeverityLevelOption'
 import FilterGroup from './filterGroup/FilterGroup'
 import css from './FiltersSidebar.module.css'
 
@@ -17,20 +19,12 @@ const FiltersSidebar = (props: Props) => {
             <FilterGroup
                 filterName='Pretrvávanie&nbsp;nedostatku'
                 options={props.filter.persistenceOptions}
-                onCheckbox={(e, idx) => props.set_filter(prev => {
-                    const updatedOptions = prev.persistenceOptions.map((option, i) => {
-                        if (i != idx) 
-                            return option
-                        
-                        return { ...option, isActive: !option.isActive } 
-                    })
-                    return { ...prev, persistenceOptions: updatedOptions }
-                })} 
+                onCheckbox={(e, idx) => props.set_filter(prev => togglePersistenceOption(prev, idx))}
             />
-
             <FilterGroup
                 filterName='Úroveň&nbsp;závažnosti'
-                options={['1', '2', '3', '4']}
+                options={props.filter.severityLevelOptions}
+                onCheckbox={(e, idx) => props.set_filter(prev => toggleSeverityLevelOption(prev, idx))} 
             />
             <FilterGroup
                 filterName='Napäťová&nbsp;úroveň'

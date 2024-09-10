@@ -7,7 +7,7 @@ export const filterByPersistenceStatus = (defect, filterPersistenceOptions) => {
         return true
 
     if (activeOptions.length == 2)
-        return true
+        return defect.isPersistent || !defect.isPersistent
 
     if (activeOptions[0].title == 'Pretrváva') 
         return defect.isPersistent

@@ -1,5 +1,6 @@
 import UiInput from '~/app_shared/ui_input/UiInput'
 import css from './FilterGroup.module.css'
+import { TDefect } from '~/defectsManagerPage/_t/TDefect'
 
 type Props = {
     filterName: string
@@ -8,6 +9,7 @@ type Props = {
 }
 
 const FilterGroup = (props: Props) => {
+
     return (
         <div className={css.filterGroupWrapper}>
             <span>{props.filterName}</span>
@@ -17,7 +19,7 @@ const FilterGroup = (props: Props) => {
                     <UiInput
                         key={index}
                         type='checkbox'
-                        label={option.title}
+                        label={<>{option.title}<span className={css.count}>{`(${option.countDefects})`}</span></>} 
                         value={option.title}
                         onChange={(e) => props.onCheckbox(e, index)}
                         checked={option.isActive}

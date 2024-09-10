@@ -4,7 +4,7 @@ type Props = {
     value: string
     onChange: (e) => void
     // OPTIONAL
-    label?: string
+    label?: any
     type?: 'text' | 'checkbox'
     placeholder?: string
     checked?: boolean

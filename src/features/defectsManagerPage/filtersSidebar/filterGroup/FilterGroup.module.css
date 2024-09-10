@@ -1,0 +1,9 @@
+.filterGroupWrapper {
+    @apply w-full flex flex-col mt-3 text-sm;
+    span {
+        @apply font-medium mb-1;
+    }
+    .options {
+        @apply w-full flex flex-col items-start gap-y-1;
+    }
+}

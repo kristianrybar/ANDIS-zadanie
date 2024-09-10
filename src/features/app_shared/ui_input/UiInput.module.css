@@ -1,12 +1,16 @@
 .uiInputWrapper {
-    @apply w-full h-[40px] flex justify-center items-center;
+    @apply h-[40px] flex justify-center items-center;
+    &.uiCheckboxWrapper {
+        @apply h-auto gap-2;
+    }
+
     input {
         @apply h-full w-full border rounded px-3 py-1;
-    }
-    .checkbox {
-        @apply w-5 h-5;
-        &:checked {
-            @apply w-8 h-8;
+        &.checkbox {
+            @apply w-5 h-5;
+            &:checked {
+                @apply w-8 h-8;
+            }
         }
     }
 }

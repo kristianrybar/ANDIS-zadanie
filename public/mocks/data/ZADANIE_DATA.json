@@ -1089,16 +1089,16 @@
             "voltageLevelName": "VVN Vedenia"
         },
         {
-            "voltageLevelIdentifier": "TS",
-            "voltageLevelName": "Trafostanice"
+            "voltageLevelIdentifier": "VN",
+            "voltageLevelName": "VN Vedenia"
         },
         {
             "voltageLevelIdentifier": "NN",
             "voltageLevelName": "NN Vedenia"
         },
         {
-            "voltageLevelIdentifier": "VN",
-            "voltageLevelName": "VN Vedenia"
+            "voltageLevelIdentifier": "TS",
+            "voltageLevelName": "Trafostanice"
         },
         {
             "voltageLevelIdentifier": "EST",

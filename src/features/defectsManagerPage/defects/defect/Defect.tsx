@@ -30,6 +30,9 @@ const Defect = (props: Props) => {
                 <div>vytvoreny: {d.createdDTime.toString().replace('T', ', ')}</div>
                 <div>{d.technicalObject.municipality}</div>
             </div>
+            <div>
+                isPersistent: {props.defect.isPersistent ? 'Áno' : 'Nie'}
+            </div>
             <div 
                 className={css.arrowRight}
                 onClick={props.onOpenDetail}

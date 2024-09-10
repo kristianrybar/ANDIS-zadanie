@@ -18,6 +18,7 @@ export const UiDatePickerRange = (props: Props) => {
             <div>
                 <span>Od:</span>
                 <DatePicker
+                    ariaInvalid='okokoook'
                     className={css.uiDatePicker}
                     clearButtonClassName={css.clearButton}
                     placeholderText='Dátum od...'

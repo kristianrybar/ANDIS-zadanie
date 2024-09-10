@@ -2,15 +2,15 @@
     @apply flex flex-col p-3;
 
     .filtersBar {
-        @apply flex justify-start items-center gap-3;
+        @apply flex justify-between items-center gap-3;
         .searchbar {
-
-        }
-        .dropdown {
             
         }
+        .dropdown {
+
+        }
         .datePickerRange {
-            @apply ml-auto;
+            
         }
     }
 
@@ -21,7 +21,7 @@
 
 
     .scrollDefects {
-        @apply overflow-y-auto;
+        @apply overflow-y-auto mt-4;
 
         .defectsList {
             

@@ -8,8 +8,11 @@ export const mock_GET_ZADANIE_DATA = async () => {
     const finalDefects = _prepareDefects(resp)
     if (finalDefects.error) 
         return finalDefects
-
-    return finalDefects
+    
+    return {
+        finalDefects: finalDefects,
+        voltageLevels: resp.voltageLevels
+    }
 }
 
 

@@ -11,7 +11,6 @@ export const mock_GET_ZADANIE_DATA = async () => {
     
     return {
         finalDefects: finalDefects,
-        voltageLevels: resp.voltageLevels
     }
 }
 
@@ -106,7 +105,6 @@ const _assingTechnicalObjectTypesToTechnicalObject = (technicalObjects, technica
     })
     if (!techObjectsWithTypes || !techObjectsWithTypes.length)
         return {error: 'Assigning tech. object types to tech. objects failed'}
-
     return techObjectsWithTypes
 }
 

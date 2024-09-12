@@ -8,6 +8,7 @@ type Props = {
     type?: 'text' | 'checkbox'
     placeholder?: string
     checked?: boolean
+    disabled?: boolean
 }
 
 const UiInput = (props: Props) => {
@@ -16,6 +17,7 @@ const UiInput = (props: Props) => {
             className={`
                 ${css.uiInputWrapper}
                 ${props.type == 'checkbox' && css.uiCheckboxWrapper}
+                ${props.disabled && css.disabled}
             `}
         >
             <input
@@ -26,7 +28,8 @@ const UiInput = (props: Props) => {
                 value={props.value || ''}
                 placeholder={props.placeholder || 'Vyhľadať...'}
                 onChange={props.onChange}
-                checked={props.checked}
+                checked={props.checked || false}
+                disabled={props.disabled || false}
             />
             {props.label || ''}
         </label>

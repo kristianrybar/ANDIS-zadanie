@@ -3,13 +3,18 @@
     &.uiCheckboxWrapper {
         @apply h-auto gap-2;
     }
-
+    &.disabled {
+        @apply text-gray-400;
+    }
     input {
         @apply h-full w-full border rounded px-3 py-1;
         &.checkbox {
             @apply w-5 h-5;
             &:checked {
-                @apply w-8 h-8;
+                @apply w-7 h-7;
+            }
+            &:disabled {
+                @apply cursor-not-allowed;
             }
         }
     }

@@ -1,5 +1,5 @@
 export const filterByPersistenceStatus = (defect, filterPersistenceOptions) => {
-    if (!defect || !filterPersistenceOptions.length) 
+    if (!defect || !filterPersistenceOptions || !filterPersistenceOptions.length) 
         return true
 
     const activeOptions = filterPersistenceOptions.filter(option => option.isActive)

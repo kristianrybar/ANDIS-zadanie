@@ -10,4 +10,7 @@
             @apply relative right-1 top-[2px] text-stone-500 font-normal text-[13px];
         }
     }
+    .otherOptionsTextWithCount {
+        @apply text-[--color4] cursor-pointer underline-offset-2 hover:underline;
+    }
 }

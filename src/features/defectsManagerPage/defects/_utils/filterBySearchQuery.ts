@@ -1,4 +1,4 @@
-import { ignoreDiacritics } from './ignoreDiacritics'
+import { ignoreDiacritics } from '../../_utils/ignoreDiacritics'
 
 export const filterBySearchQuery = (defect, searchQuery) => {
     if (!defect || !searchQuery)

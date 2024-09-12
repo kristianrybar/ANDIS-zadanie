@@ -22,6 +22,14 @@ const Defect = (props: Props) => {
                     onChange={props.onCheckbox}
                 />
             </div>
+            <div>
+                <div>{d.technicalObject.constructionYear}</div>
+                <div>{d.technicalObject.technicalObjectType?.voltageLevel.voltageLevelName}</div>
+            </div>
+            <div>
+                <div>isPersistent: {props.defect.isPersistent ? <b>ANO</b> : <b>NIE</b>}</div>
+                <div>severityLevel: <b>{d.defectType.defaultSeverityLevel}</b></div>
+            </div>
             <div className={css.leftPart}>
                 <div>{d.defectType.defectTypeName}</div>
                 <div>{d.technicalObject.technicalObjectName}</div>
@@ -29,12 +37,6 @@ const Defect = (props: Props) => {
             <div className={css.rightPart}>
                 <div>vytvoreny: {d.createdDTime.toString().replace('T', ', ')}</div>
                 <div>{d.technicalObject.municipality}</div>
-            </div>
-            <div>
-                isPersistent: {props.defect.isPersistent ? <b>ANO</b> : <b>NIE</b>}
-            </div>
-            <div>
-                severityLevel: <b>{d.defectType.defaultSeverityLevel}</b>
             </div>
             <div 
                 className={css.arrowRight}

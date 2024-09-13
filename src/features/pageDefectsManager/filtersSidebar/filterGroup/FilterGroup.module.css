@@ -1,5 +1,5 @@
 .filterGroupWrapper {
-    @apply w-full flex flex-col mt-3 text-sm;
+    @apply w-full flex flex-col mb-3 text-sm;
     span {
         @apply font-medium mb-1;
     }

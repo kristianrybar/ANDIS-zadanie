@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { TFilter } from './_t/TFilter'
 import { mock_GET_ZADANIE_DATA } from './_mockApi/mock_GET_ZADANIE_DATA'
 import { TDefect } from './_t/TDefect'
+import { resetAllFilters } from './_utils/resetAllFilters'
 import { toggleOffOnFilterOption } from './_utils/toggleOffOnFilterOption'
 import { createFilters } from './_utils/createFilters'
 import { updateFiltersOptionsCountDefects } from './_utils/updateFiltersOptionsCountDefects'
@@ -48,6 +49,7 @@ const PageDefectsManager = () => {
             <FiltersSidebar
               filters={filters}
               onCheckbox={(optionIndex, filterName) => set_filters((prev) => toggleOffOnFilterOption(prev, filterName, optionIndex))}
+              onResetFilters={() => set_filters(resetAllFilters())}
             />
           </div>
           
@@ -56,7 +58,6 @@ const PageDefectsManager = () => {
               defects={defects}
               onOpenDetail={() => set_mode('detail')}
               filters={filters}
-              //onFilterDefects={(filteredDefects) => set_filters(prev => updateFiltersOptionsCountDefects(prev, filteredDefects))}
               onFilterDefects={(filteredDefects) => set_filters(updateFiltersOptionsCountDefects(filteredDefects))}
             />
           </div>

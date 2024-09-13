@@ -1,5 +1,5 @@
 export const filterByVoltageLevel = (defect, filterVoltageLevelOptions) => {
-    if (!defect || !filterVoltageLevelOptions.length) 
+    if (!defect || !filterVoltageLevelOptions?.length) 
         return true
 
     const activeOptions = filterVoltageLevelOptions.filter(option => option.isActive)

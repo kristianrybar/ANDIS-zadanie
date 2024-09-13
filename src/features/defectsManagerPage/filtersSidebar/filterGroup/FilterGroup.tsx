@@ -1,19 +1,18 @@
+import { useState, useEffect } from 'react'
 import UiInput from '~/app_shared/ui_input/UiInput'
+import { updateFiltersOptionsCountDefects } from '~/defectsManagerPage/_utils/updateFiltersOptionsCountDefects'
 import css from './FilterGroup.module.css'
-import { useEffect, useState } from 'react'
 
 type Props = {
     filterName: string
     options: any[]
     onCheckbox: (e, idx) => void
 }
+const maxCountVisibleOptions = 5
 
 const FilterGroup = (props: Props) => {
-    const [showAll, setShowAll] = useState(false)
     const [visibleOptions, set_visibleOptions] = useState<any[]>([])
-    
-    const maxCountVisibleOptions = 5
-    //let visibleOptions = showAll ? props.options : props.options?.slice(0, maxCountVisibleOptions)
+    const [showAll, setShowAll] = useState(false)
 
     const showOtherOptionsTextWithCount = () => {
         const result: number = props.options?.length - maxCountVisibleOptions
@@ -24,10 +23,16 @@ const FilterGroup = (props: Props) => {
     }
 
     useEffect(() => {
+        //console.log(props.options)
         let _visibleOptions = showAll ? props.options : props.options?.slice(0, maxCountVisibleOptions)
+        //console.log(_visibleOptions)
         set_visibleOptions(_visibleOptions)
+        //console.log(props.filterName)
+        //console.log(props.options)
+        //set_visibleOptions(props.options)
+        //console.log('updated data')
     }, [props.options, showAll, props.onCheckbox])
-    //console.log(props.options)
+
     //console.log(visibleOptions)
     return (
         <div className={css.filterGroupWrapper}>
@@ -39,16 +44,15 @@ const FilterGroup = (props: Props) => {
                         key={index}
                         type='checkbox'
                         label={<>
-                            {option.title}
+                            {option.name}
                             <span className={`${css.count} ${!option.countDefects && '!text-gray-400'}`}>
                                 {`(${option.countDefects})`}
                             </span>
                         </>} 
-                        value={option.title}
+                        value={option.name}
                         onChange={(e) => props.onCheckbox(e, index)}
                         checked={option.isActive}
                         disabled={!option.countDefects}
-                        
                     />
                 )}
                 <div 
@@ -57,8 +61,7 @@ const FilterGroup = (props: Props) => {
                 >
                     {showOtherOptionsTextWithCount()}
                 </div>
-            </div>
-            
+            </div>      
         </div>
     )
 }

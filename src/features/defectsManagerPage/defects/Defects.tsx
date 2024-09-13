@@ -4,24 +4,28 @@ import { filterByPersistenceStatus } from './_utils/filterByPersistenceStatus'
 import { filterBySeverityLevel } from './_utils/filterBySeverityLevel'
 import { filterByVoltageLevel } from './_utils/filterByVoltageLevel'
 import { filterBySearchQuery } from './_utils/filterBySearchQuery'
+import { filterByConstructionYear } from './_utils/filterByConstructionYear'
 import { filterByDateRange } from './_utils/filterByDateRange'
+import { filterByCruciality } from './_utils/filterByCruciality'
 import { sortByDate } from './_utils/sortByDate'
 import { UiDatePickerRange } from '~/app_shared/ui_datePickerRange/UiDatePickerRange'
 import Defect from './defect/Defect'
 import UiInput from '~/app_shared/ui_input/UiInput'
 import UiDropdown from '~/app_shared/ui_dropdown/UiDropdown'
 import css from './Defects.module.css'
-import { filterByConstructionYear } from './_utils/filterByConstructionYear'
-import { createFilters } from '../_utils/prepareFilters'
+import { TFilter } from '../_t/TFilter'
+
 
 type Props = {
     defects: TDefect[]
-    filter: any
+    filters: TFilter[]
     onOpenDetail: () => void
     onFilterDefects: (filteredDefects) => void
 }
 
 const Defects = (props: Props) => {
+    const [filteredDefects, set_filteredDefects] = useState<TDefect[]>(props.defects || [])
+
     const [searchQuery, set_searchQuery] = useState<string>('')
     const [dropdownQuery, set_dropdownQuery] = useState<string>('')
     const [dateFilter, setDateFilter] = useState({
@@ -29,22 +33,30 @@ const Defects = (props: Props) => {
         endDate: '',
     })
 
-
-    const filteredDefects = props.defects
-        .filter((defect) => filterBySearchQuery(defect, searchQuery))
-        .sort((a, b) => sortByDate(a, b, dropdownQuery))
-        .filter(defect => filterByDateRange(dateFilter, defect.createdDTime))
-        .filter(defect => filterByPersistenceStatus(defect, props.filter.persistenceOptions))
-        .filter(defect => filterBySeverityLevel(defect, props.filter.severityLevelOptions))
-        .filter(defect => filterByVoltageLevel(defect, props.filter.voltageLevelOptions))
-        .filter(defect => filterByConstructionYear(defect, props.filter.constructionYearOptions))
+    const _returnFilterByName = (filterName) => {
+        return props.filters.find(f => f.filterName == filterName)
+    }
     
     useEffect(() => {
+        const updatedDefects = props.defects
+            .sort((a, b) => sortByDate(a, b, dropdownQuery))
+            .filter((defect) => filterBySearchQuery(defect, searchQuery))
+            .filter(defect => filterByDateRange(dateFilter, defect.createdDTime))
+            .filter(defect => filterByPersistenceStatus(defect, _returnFilterByName('Pretrvávanie nedostatku')))
+            .filter(defect => filterBySeverityLevel(defect, _returnFilterByName('Úroveň závažnosti')))
+            .filter(defect => filterByVoltageLevel(defect, props.filters.voltageLevelOptions))
+            .filter(defect => filterByConstructionYear(defect, _returnFilterByName('Rok výstavby')))
+            .filter(defect => filterByCruciality(defect, props.filters.crucialityOptions))
+        
+        set_filteredDefects(updatedDefects)
+        console.log('filtering defects')
+        console.log(updatedDefects)
+    }, [searchQuery, dropdownQuery, dateFilter, props.defects, props.filters])
+
+    useEffect(() => {
         props.onFilterDefects(filteredDefects)
-        console.log('Local defects have been updated, you should update the defectsCount. If the count is 0, then disable the checkbox.')
-    }, [filteredDefects])
-
-
+    }, [filteredDefects, props.defects])
+    
     return (
         <div className={css.defects}>
             <div className={css.filtersBar}>

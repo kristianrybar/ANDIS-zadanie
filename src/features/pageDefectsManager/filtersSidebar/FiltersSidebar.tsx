@@ -19,17 +19,6 @@ const FiltersSidebar = (props: Props) => {
                     onCheckbox={(e, idx) => props.onCheckbox(idx, f.filterName)}
                 />
             )}
-
-            {/* <FilterGroup
-                filterName='Významný&nbsp;technický&nbsp;objekt'
-                options={props.filters?.crucialityOptions}
-                onCheckbox={(e, idx) => props.set_filter(prev => toggleCrucialityOption(prev, idx))} 
-            />
-            <FilterGroup
-                filterName='Zodpovedná&nbsp;osoba'
-                options={props.filters?.supervisorOptions}
-                onCheckbox={(e, idx) => props.set_filter(toggleOffOnOption(idx, 'supervisorOptions'))} 
-            /> */}
         </div>
     )
 }

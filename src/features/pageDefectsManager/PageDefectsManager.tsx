@@ -9,12 +9,11 @@ import FiltersSidebar from './filtersSidebar/FiltersSidebar'
 import Defects from './defects/Defects'
 import DefectDetail from './defectDetail/DefectDetail'
 import Test from './Test'
-import css from './DefectsManagerPage.module.css'
+import css from './PageDefectsManager.module.css'
 
 
-const DefectsManagerPage = () => {
+const PageDefectsManager = () => {
   const [defects, set_defects] = useState<TDefect[]>([])
-  const [f_defects, set_f_defects] = useState<TDefect[]>([])
   const [mode, set_mode] = useState<'list' | 'detail'>('list')
   const [filters, set_filters] = useState<TFilter[]>([])
 
@@ -23,6 +22,7 @@ const DefectsManagerPage = () => {
     const resp = await mock_GET_ZADANIE_DATA()
     if (resp.error)
       return alert(resp.error)
+    
     set_defects(resp.finalDefects)
   }
 
@@ -34,18 +34,11 @@ const DefectsManagerPage = () => {
     if (!defects.length)
       return
     const initialFilters = createFilters(defects)
-    console.log('initial filters', initialFilters)
+    if (!initialFilters) 
+      return
+    console.log(initialFilters)
     set_filters(initialFilters)
   }, [defects])
-
-  useEffect(() => {
-    if (!filters.length)
-      return
-    if (!f_defects.length)
-      return
-    
-    set_filters(updateFiltersOptionsCountDefects(f_defects))
-  }, [f_defects])
 
   return (<>
     <div className={css.homePageContainer}>
@@ -54,19 +47,17 @@ const DefectsManagerPage = () => {
           <div className='border border-r-0 w-2/12'>
             <FiltersSidebar
               filters={filters}
-              onCheckbox={(optionIndex, filterName) => {
-                set_filters((prev) => toggleOffOnFilterOption(prev, filterName, optionIndex))
-                //console.log('koko')
-              }}
+              onCheckbox={(optionIndex, filterName) => set_filters((prev) => toggleOffOnFilterOption(prev, filterName, optionIndex))}
             />
           </div>
+          
           <div className='border w-10/12'>
             <Defects
               defects={defects}
               onOpenDetail={() => set_mode('detail')}
               filters={filters}
               //onFilterDefects={(filteredDefects) => set_filters(prev => updateFiltersOptionsCountDefects(prev, filteredDefects))}
-              onFilterDefects={(filteredDefects) => set_f_defects(filteredDefects)}
+              onFilterDefects={(filteredDefects) => set_filters(updateFiltersOptionsCountDefects(filteredDefects))}
             />
           </div>
         </>
@@ -82,4 +73,4 @@ const DefectsManagerPage = () => {
   )
 }
 
-export default DefectsManagerPage
+export default PageDefectsManager

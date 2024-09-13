@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 // Pomocná funkcia na odstránenie diakritiky
 const removeDiacritics = (text: string) => {
     return text.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+};
+
+// Pomocná funkcia na zvýraznenie textu
+const highlightText = (text: string, searchTerm: string) => {
+    if (!searchTerm) return text;
+
+    const regex = new RegExp(`(${searchTerm})`, "gi");
+    const parts = text.split(regex);
+
+    return parts.map((part, index) => 
+        removeDiacritics(part.toLowerCase()) === removeDiacritics(searchTerm.toLowerCase()) 
+            ? <span key={index} style={{ backgroundColor: 'orange' }}>{part}</span> 
+            : part
+    );
 };
 
 // Definícia typu objektu
@@ -40,7 +54,7 @@ const App = () => {
             <ul>
                 {filteredItems.map((item) => (
                     <li key={item.id}>
-                        {item.name} - {item.description}
+                        <strong>{highlightText(item.name, searchTerm)}</strong> - {highlightText(item.description, searchTerm)}
                     </li>
                 ))}
             </ul>

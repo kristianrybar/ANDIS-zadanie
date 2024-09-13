@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import UiInput from '~/app_shared/ui_input/UiInput'
-import { updateFiltersOptionsCountDefects } from '~/defectsManagerPage/_utils/updateFiltersOptionsCountDefects'
+import { updateFiltersOptionsCountDefects } from '~/pageDefectsManager/_utils/updateFiltersOptionsCountDefects'
 import css from './FilterGroup.module.css'
 
 type Props = {

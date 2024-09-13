@@ -9,7 +9,7 @@
     input {
         @apply relative h-full w-full border rounded px-3 py-1;
         &.checkbox {
-            @apply w-5 h-5 shadow-none appearance-none p-0 border-[--color5] bg-white hover:bg-[--color3];
+            @apply w-5 h-5 shadow-none appearance-none p-0 border-[--color5] bg-white hover:bg-[--color3] cursor-pointer;
             &:checked {
                 @apply bg-[--color3];
                 &::after {

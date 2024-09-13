@@ -7,6 +7,8 @@ import { filterBySearchQuery } from './_utils/filterBySearchQuery'
 import { filterByConstructionYear } from './_utils/filterByConstructionYear'
 import { filterByDateRange } from './_utils/filterByDateRange'
 import { filterByCruciality } from './_utils/filterByCruciality'
+import { filterBySupervisor } from './_utils/filterBySupervisor'
+import { filterByMunicipality } from './_utils/filterByMunicipality'
 import { sortByDate } from './_utils/sortByDate'
 import { UiDatePickerRange } from '~/app_shared/ui_datePickerRange/UiDatePickerRange'
 import Defect from './defect/Defect'
@@ -44,13 +46,13 @@ const Defects = (props: Props) => {
             .filter(defect => filterByDateRange(dateFilter, defect.createdDTime))
             .filter(defect => filterByPersistenceStatus(defect, _returnFilterByName('Pretrvávanie nedostatku')))
             .filter(defect => filterBySeverityLevel(defect, _returnFilterByName('Úroveň závažnosti')))
-            .filter(defect => filterByVoltageLevel(defect, props.filters.voltageLevelOptions))
+            .filter(defect => filterByVoltageLevel(defect, _returnFilterByName('Úroveň napätia')))
             .filter(defect => filterByConstructionYear(defect, _returnFilterByName('Rok výstavby')))
-            .filter(defect => filterByCruciality(defect, props.filters.crucialityOptions))
+            .filter(defect => filterByCruciality(defect, _returnFilterByName('Významný technický objekt')))
+            .filter(defect => filterBySupervisor(defect, _returnFilterByName('Zodpovedná osoba')))
+            .filter(defect => filterByMunicipality(defect, _returnFilterByName('Obec')))
         
         set_filteredDefects(updatedDefects)
-        console.log('filtering defects')
-        console.log(updatedDefects)
     }, [searchQuery, dropdownQuery, dateFilter, props.defects, props.filters])
 
     useEffect(() => {

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import DefectsManagerPage from '~/defectsManagerPage/DefectsManagerPage'
+import PageDefectsManager from '~/pageDefectsManager/PageDefectsManager'
 
 const RouteSwitch = () => {
 
@@ -7,7 +7,7 @@ const RouteSwitch = () => {
     <BrowserRouter>
       <Routes>
         <Route path={'/'} element={<Navigate to={'defectsManager'} />} />
-        <Route path={'/defectsManager'} element={<DefectsManagerPage />} />
+        <Route path={'/defectsManager'} element={<PageDefectsManager />} />
       </Routes>
     </BrowserRouter>
   )

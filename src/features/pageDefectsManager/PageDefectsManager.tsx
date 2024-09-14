@@ -45,7 +45,7 @@ const PageDefectsManager = () => {
     <div className={css.homePageContainer}>
       {mode == 'list' &&
         <>
-          <div className='border border-r-0 w-2/12'>
+          <div className='w-2/12 p-3 bg-[--bg-lighter] rounded-lg border border-[--color4] h-fit'>
             <FiltersSidebar
               filters={filters}
               onCheckbox={(optionIndex, filterName) => set_filters((prev) => toggleOffOnFilterOption(prev, filterName, optionIndex))}
@@ -53,7 +53,7 @@ const PageDefectsManager = () => {
             />
           </div>
           
-          <div className='border w-10/12'>
+          <div className='w-10/12'>
             <Defects
               defects={defects}
               onOpenDetail={() => set_mode('detail')}

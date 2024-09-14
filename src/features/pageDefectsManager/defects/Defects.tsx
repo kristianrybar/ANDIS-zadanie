@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { TDefect } from '../_t/TDefect'
+import { TFilter } from '../_t/TFilter'
 import { filterByPersistenceStatus } from './_utils/filterByPersistenceStatus'
 import { filterBySeverityLevel } from './_utils/filterBySeverityLevel'
 import { filterByVoltageLevel } from './_utils/filterByVoltageLevel'
@@ -11,11 +12,13 @@ import { filterBySupervisor } from './_utils/filterBySupervisor'
 import { filterByMunicipality } from './_utils/filterByMunicipality'
 import { sortByDate } from './_utils/sortByDate'
 import { UiDatePickerRange } from '~/app_shared/ui_datePickerRange/UiDatePickerRange'
+import UiButton from '~/app_shared/ui_button/UiButton'
 import Defect from './defect/Defect'
 import UiInput from '~/app_shared/ui_input/UiInput'
 import UiDropdown from '~/app_shared/ui_dropdown/UiDropdown'
+import { FaMapMarkedAlt } from 'react-icons/fa'
+import { FaListOl } from 'react-icons/fa'
 import css from './Defects.module.css'
-import { TFilter } from '../_t/TFilter'
 
 
 type Props = {
@@ -26,8 +29,8 @@ type Props = {
 }
 
 const Defects = (props: Props) => {
+    const [listMode, set_listMode] = useState<'table' | 'map'>('table')
     const [filteredDefects, set_filteredDefects] = useState<TDefect[]>(props.defects || [])
-
     const [searchQuery, set_searchQuery] = useState<string>('')
     const [dropdownQuery, set_dropdownQuery] = useState<string>('')
     const [dateFilter, setDateFilter] = useState({
@@ -82,6 +85,28 @@ const Defects = (props: Props) => {
                         showIcon={true}
                         onClearOption={() => set_dropdownQuery('')}
                     />
+                </div>
+            </div>
+
+            <div className={css.actionBar}>
+                <UiButton
+                    onClick={() => console.log('vytvor inves. poziadavku')}
+                >
+                    Vytvoriť investičnú požiadavku
+                </UiButton>
+                <div className={css.listModeSwitcher}>
+                    <div 
+                        className={`${listMode == 'table' && css.tableMode}`}
+                        onClick={() => set_listMode('table')}
+                    >
+                        Tabuľka <FaListOl />
+                    </div>
+                    <div 
+                        className={`${listMode == 'map' && css.mapMode}`}
+                        onClick={() => set_listMode('map')}
+                    >
+                        Mapa <FaMapMarkedAlt />
+                    </div>
                 </div>
             </div>
 

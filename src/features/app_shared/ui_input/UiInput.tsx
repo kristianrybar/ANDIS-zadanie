@@ -9,6 +9,7 @@ type Props = {
     placeholder?: string
     checked?: boolean
     disabled?: boolean
+    wrapperClassName?: string
 }
 
 const UiInput = (props: Props) => {
@@ -16,6 +17,7 @@ const UiInput = (props: Props) => {
         <label 
             className={`
                 ${css.uiInputWrapper}
+                ${props.wrapperClassName}
                 ${props.type == 'checkbox' && css.uiCheckboxWrapper}
                 ${props.disabled && css.disabled}
             `}

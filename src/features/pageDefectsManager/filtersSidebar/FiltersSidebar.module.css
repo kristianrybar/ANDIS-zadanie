@@ -1,7 +1,7 @@
 .resetFilters {
-    @apply text-center underline underline-offset-2 hover:no-underline cursor-pointer text-[--color4] text-sm p-3 pb-0;
+    @apply text-center underline underline-offset-2 hover:no-underline cursor-pointer text-[--color4] text-sm pb-3;
 }
 
 .filtersSidebar {
-    @apply flex flex-col p-3;
+    @apply flex flex-col;
 }

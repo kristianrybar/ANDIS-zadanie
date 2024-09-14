@@ -1,0 +1,10 @@
+.uiButton {
+    @apply block w-fit;
+    &[disabled] {
+        @apply pointer-events-none opacity-40;
+    }
+    &.skin_default {
+        @apply px-3 text-sm font-medium rounded-lg bg-[--bg-lighter] h-[40px] hover:bg-[--color3] text-black border border-[--color4];
+    }
+}
+

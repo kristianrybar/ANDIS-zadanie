@@ -17,6 +17,7 @@ const Defect = (props: Props) => {
         <div className={css.defect}>
             <div>
                 <UiInput
+                    wrapperClassName='p-3'
                     type='checkbox'
                     value='mock_checkbox_value'
                     onChange={props.onCheckbox}

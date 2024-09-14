@@ -1,14 +1,14 @@
 .uiDatePickerRange {
     @apply w-full flex;
     span {
-        @apply text-sm;
+        @apply text-sm mx-2;
     }
-    span:first-of-type {
-        @apply mr-2;
+    div:first-of-type {
+        span {
+            @apply ml-0;
+        }
     }
-    span:last-of-type {
-        @apply mx-2;
-    }
+
     .uiDatePicker {
         @apply w-[140px] h-[40px] px-3 rounded border;
 

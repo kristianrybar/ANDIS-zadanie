@@ -1,5 +1,5 @@
 .defect {
-    @apply border border-[--color5] border-b-0 flex justify-between items-center pl-3 py-1 text-sm;
+    @apply border border-[--color5] border-b-0 flex justify-between items-center py-1 text-sm;
     &:hover {
         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 1px 4px rgba(0, 0, 0, 0.44);
         .arrowRight {
@@ -7,10 +7,10 @@
         }
     }
     &:first-child {
-        @apply border-t;
+        @apply border-t rounded-t-md;
     }
     &:last-child {
-        @apply border-b;
+        @apply border-b rounded-b-md;
     }
     &:nth-child(odd) {
         @apply bg-[--color2];

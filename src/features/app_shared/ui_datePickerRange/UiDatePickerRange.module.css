@@ -10,7 +10,7 @@
     }
 
     .uiDatePicker {
-        @apply w-[140px] h-[40px] px-3 rounded border;
+        @apply w-[140px] h-[40px] px-3 rounded border border-[--color4];
 
     }
     .clearButton {

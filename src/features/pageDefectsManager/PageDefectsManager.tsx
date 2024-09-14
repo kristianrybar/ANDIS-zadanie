@@ -1,3 +1,4 @@
+import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { TFilter } from './_t/TFilter'
 import { mock_GET_ZADANIE_DATA } from './_mockApi/mock_GET_ZADANIE_DATA'
@@ -18,6 +19,10 @@ const PageDefectsManager = () => {
   const [mode, set_mode] = useState<'list' | 'detail'>('list')
   const [filters, set_filters] = useState<TFilter[]>([])
 
+  const navigate = useNavigate()
+  const location = useLocation()
+
+1
   const getMockCoreData = async () => {
     //await new Promise(resolve => setTimeout(resolve, 1000))
     const resp = await mock_GET_ZADANIE_DATA()
@@ -25,6 +30,24 @@ const PageDefectsManager = () => {
       return alert(resp.error)
     
     set_defects(resp.finalDefects)
+  }
+
+  const openDefectDetail_andCreateUrlSearchParams = (defectId) => {
+    if (!defectId)
+      return
+    
+    navigate({
+        pathname: '/defectsManager/',
+        search: createSearchParams({
+            defectId
+        }).toString()
+    })
+    set_mode('detail')
+  }
+
+  const openDefectsList_andClearUrlSearchParams = () => {
+    navigate(location.pathname)
+    set_mode('list')
   }
 
   useEffect(() => {
@@ -56,7 +79,7 @@ const PageDefectsManager = () => {
           <div className='w-10/12'>
             <Defects
               defects={defects}
-              onOpenDetail={() => set_mode('detail')}
+              onOpenDetail={(defectID) => openDefectDetail_andCreateUrlSearchParams(defectID)}
               filters={filters}
               onFilterDefects={(filteredDefects) => set_filters(updateFiltersOptionsCountDefects(filteredDefects))}
             />
@@ -64,9 +87,10 @@ const PageDefectsManager = () => {
         </>
       }
       {mode == 'detail' &&
-        <div className='border w-full'>
+        <div className='w-full'>
           <DefectDetail
-            onGoBack={() => set_mode('list')}
+            onGoBack={openDefectsList_andClearUrlSearchParams}
+            defects={defects}
           />
         </div>
       }

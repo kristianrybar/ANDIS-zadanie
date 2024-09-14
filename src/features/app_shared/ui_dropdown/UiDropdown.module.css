@@ -14,14 +14,14 @@
   }
   
   .control {
-    @apply h-[40px] flex w-full justify-between items-center gap-8 rounded-md px-3 cursor-pointer;
+    @apply h-[40px] flex w-full justify-between items-center gap-8 rounded-md px-3 cursor-pointer border-[--color4] focus:rounded-b-none;
 
     &.invalid {
       @apply border-red-500;
     }
   }
   .menu {
-    @apply rounded-b-lg border-t-0;
+    @apply rounded-b-lg border-t-0 border-[--color4];
   }
   
   .actionIcon {

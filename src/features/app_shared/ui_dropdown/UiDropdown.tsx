@@ -34,13 +34,14 @@ const UiDropdown = (props: Props) => {
                 controlClassName={`${css.control} ${props.invalid && css.invalid}`}
                 menuClassName={`${css.menu}`}
                 options={props.options}
-                onFocus={props.onFocus}
+                //onFocus={props.onFocus}
                 onChange={(option: Option) => props.onChange(option)}
                 value={props.value || ''}
                 placeholder={props.placeholder || 'Zoradiť...'}
                 arrowClosed={<IoIosArrowDown />}
                 arrowOpen={<IoIosArrowUp />}
                 disabled={props.disabled || false}
+                
             />
             {props.showIcon && props.value &&
                 <TiDelete

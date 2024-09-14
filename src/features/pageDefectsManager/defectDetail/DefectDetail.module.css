@@ -1,11 +1,37 @@
 .defectDetail {
     @apply bg-[--color1];
     .header {
+        @apply border-b border-[--color4];
+        .title {
+            @apply text-xl font-medium;
+        }
         .goBack {
-            @apply flex items-center gap-2 text-[1.5rem] leading-[0.8] cursor-pointer ml-3 py-2 w-max;
+            @apply flex items-center gap-2 text-lg leading-[0.8] cursor-pointer py-2 w-max;
             svg {
-                @apply text-[1.5rem];
+                @apply text-lg;
             }
         }
+    }
+    .content {
+        h3 {
+            @apply text-lg font-medium;
+        }
+        @apply flex gap-3;
+        & > div:first-child {
+            @apply bg-red-100;
+        }
+        & > div:nth-child(2) {
+            @apply bg-yellow-100;
+        }
+        & > div:nth-child(3) {
+            @apply bg-green-100;
+        }
+        & > div:last-child {
+            @apply bg-blue-100;
+        }
+    }
+
+    .map {
+
     }
 }

@@ -24,7 +24,7 @@ import css from './Defects.module.css'
 type Props = {
     defects: TDefect[]
     filters: TFilter[]
-    onOpenDetail: () => void
+    onOpenDetail: (defectID) => void
     onFilterDefects: (filteredDefects) => void
 }
 
@@ -38,7 +38,7 @@ const Defects = (props: Props) => {
         endDate: '',
     })
 
-    const _returnFilterByName = (filterName) => {
+    const _findAndReturnFilterByName = (filterName) => {
         return props.filters.find(f => f.filterName == filterName)
     }
     
@@ -47,13 +47,13 @@ const Defects = (props: Props) => {
             .sort((a, b) => sortByDate(a, b, dropdownQuery))
             .filter((defect) => filterBySearchQuery(defect, searchQuery))
             .filter(defect => filterByDateRange(dateFilter, defect.createdDTime))
-            .filter(defect => filterByPersistenceStatus(defect, _returnFilterByName('Pretrvávanie nedostatku')))
-            .filter(defect => filterBySeverityLevel(defect, _returnFilterByName('Úroveň závažnosti')))
-            .filter(defect => filterByVoltageLevel(defect, _returnFilterByName('Úroveň napätia')))
-            .filter(defect => filterByConstructionYear(defect, _returnFilterByName('Rok výstavby')))
-            .filter(defect => filterByCruciality(defect, _returnFilterByName('Významný technický objekt')))
-            .filter(defect => filterBySupervisor(defect, _returnFilterByName('Zodpovedná osoba')))
-            .filter(defect => filterByMunicipality(defect, _returnFilterByName('Obec')))
+            .filter(defect => filterByPersistenceStatus(defect, _findAndReturnFilterByName('Pretrvávanie nedostatku')))
+            .filter(defect => filterBySeverityLevel(defect, _findAndReturnFilterByName('Úroveň závažnosti')))
+            .filter(defect => filterByVoltageLevel(defect, _findAndReturnFilterByName('Úroveň napätia')))
+            .filter(defect => filterByConstructionYear(defect, _findAndReturnFilterByName('Rok výstavby')))
+            .filter(defect => filterByCruciality(defect, _findAndReturnFilterByName('Významný technický objekt')))
+            .filter(defect => filterBySupervisor(defect, _findAndReturnFilterByName('Zodpovedná osoba')))
+            .filter(defect => filterByMunicipality(defect, _findAndReturnFilterByName('Obec')))
         
         set_filteredDefects(updatedDefects)
     }, [searchQuery, dropdownQuery, dateFilter, props.defects, props.filters])
@@ -61,7 +61,7 @@ const Defects = (props: Props) => {
     useEffect(() => {
         props.onFilterDefects(filteredDefects)
     }, [filteredDefects, props.defects])
-    
+
     return (
         <div className={css.defects}>
             <div className={css.filtersBar}>
@@ -90,7 +90,7 @@ const Defects = (props: Props) => {
 
             <div className={css.actionBar}>
                 <UiButton
-                    onClick={() => console.log('vytvor inves. poziadavku')}
+                    onClick={() => console.log('create investment request')}
                 >
                     Vytvoriť investičnú požiadavku
                 </UiButton>
@@ -110,21 +110,34 @@ const Defects = (props: Props) => {
                 </div>
             </div>
 
-            <div className={css.scrollDefects}>
-                <div className={css.defectsList}>
-                    {filteredDefects.length
-                        ? filteredDefects.map(d => 
-                            <Defect
-                                key={d.defectID}
-                                defect={d}
-                                onOpenDetail={props.onOpenDetail}
-                                onCheckbox={() => console.log}
-                            />
-                        )
-                        : <div className={css.noDefects}>Žiadne výsledky</div>
-                    }
+            {listMode == 'table' && 
+                <div className={css.scrollDefects}>
+                    <div className={css.defectsList}>
+                        <div className={css.labels}>
+                            <div>typ nedostatku | stav</div>
+                            <div>tech. objekt | rok vystavby</div>
+                            <div>uroven napatia | uroven zavaznosti</div>
+                            <div>datum vytvorenia | obec</div>
+                        </div>
+                        {filteredDefects.length
+                            ? filteredDefects.map(d => 
+                                <Defect
+                                    key={d.defectID}
+                                    defect={d}
+                                    onOpenDetail={() => props.onOpenDetail(d.defectID)}
+                                    onCheckbox={() => console.log}
+                                />
+                            )
+                            : <div className={css.noDefects}>Žiadne výsledky</div>
+                        }
+                    </div>
                 </div>
-            </div>
+            }
+            {listMode == 'map' &&
+                <div className={css.defectsMap}>
+                    TU BUDU DEFECTS ZOBRAZENE V MAPE, TBD...
+                </div>
+            }
         </div>
     )
 }

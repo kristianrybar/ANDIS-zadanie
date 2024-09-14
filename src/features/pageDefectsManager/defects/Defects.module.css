@@ -20,7 +20,7 @@
             @apply flex text-[#c1c1c1] text-sm cursor-pointer rounded-full;
         
             & > div {
-                @apply flex items-center justify-center bg-[white] gap-2 px-4 w-[115px];
+                @apply flex items-center justify-center bg-[white] hover:bg-[--color3] gap-2 px-4 w-[115px];
             }
             div:first-of-type {
                 @apply border border-[#c6c6c6] rounded-l-full border-r-0;
@@ -30,10 +30,10 @@
             }
 
             .tableMode {
-                @apply !border-r !border-[--color4] text-black bg-[--bg-lighter] font-semibold;
+                @apply !border-r !border-[--color4] text-black font-semibold;
             }
             .mapMode {
-                @apply !border-l !border-[--color4] text-black bg-[--bg-lighter] font-semibold;
+                @apply !border-l !border-[--color4] text-black font-semibold;
             }
 
             svg {
@@ -43,13 +43,21 @@
     }
 
     .scrollDefects {
-        @apply mt-3 grow;
+        @apply mt-2 grow;
 
         .defectsList {
             @apply h-full;
+            .labels {
+                @apply w-full flex items-center justify-between text-sm px-3;
+                font-variant:small-caps;
+            }
             .noDefects {
                 @apply h-full flex justify-center items-center font-semibold text-lg;
             }
         }
+    }
+
+    .defectsMap {
+        @apply h-full flex items-center justify-center text-3xl;
     }
 }

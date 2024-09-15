@@ -1,4 +1,6 @@
 import RouteSwitch from './router/RouteSwitch'
+import 'react-dropdown/style.css'
+import 'leaflet/dist/leaflet.css'
 import './theme/global.css'
 import './theme/tailwind.css'
 

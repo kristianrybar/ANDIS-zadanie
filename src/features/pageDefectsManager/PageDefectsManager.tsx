@@ -39,7 +39,7 @@ const PageDefectsManager = () => {
     navigate({
         pathname: '/defectsManager/',
         search: createSearchParams({
-            defectId
+          defectId
         }).toString()
     })
     set_mode('detail')

@@ -1,0 +1,7 @@
+.Dropdown-control {
+    @apply transition-none;
+}
+
+.Dropdown-root.is-open .Dropdown-control {
+    @apply !rounded-b-none;
+}

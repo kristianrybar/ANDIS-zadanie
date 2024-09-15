@@ -1,10 +1,8 @@
 import Dropdown, { Option } from 'react-dropdown'
 import { TiDelete } from "react-icons/ti";
-
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
-
-import 'react-dropdown/style.css'
 import css from './UiDropdown.module.css'
+import './ReactDropdownOverrides.css'
 
 type Props = {
     value: Option | string

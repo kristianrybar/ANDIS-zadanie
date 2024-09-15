@@ -1,0 +1,7 @@
+.mapLeafletWrapper {
+    @apply mt-4;
+
+    .leafletMap {
+        @apply h-[500px];
+    }
+}

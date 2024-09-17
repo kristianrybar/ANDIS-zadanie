@@ -1,12 +1,12 @@
 .defect {
-    @apply border border-[--color5] border-b-0 flex justify-between items-center py-1 text-sm;
+    @apply border border-[--color5] border-b-0 flex items-center  py-1 text-sm;
     &:hover {
         box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15), inset 0 1px 4px rgba(0, 0, 0, 0.44);
         .arrowRight {
             @apply text-gray-700 cursor-pointer;
         }
     }
-    &:first-child {
+    &:nth-child(2) {
         @apply border-t rounded-t-md;
     }
     &:last-child {
@@ -20,5 +20,33 @@
     }
     .arrowRight {
         @apply text-[1.5rem] text-gray-400 px-3 self-stretch flex items-center;
+    }
+
+    & > div {
+        @apply px-2;
+        &:first-child {
+            @apply px-0;
+        }
+        &:nth-child(2) {
+            @apply w-3/12 pl-0;
+        }
+        &:nth-child(3) {
+            @apply w-1/12;
+        }
+        &:nth-child(4) {
+            @apply w-2/12;
+        }
+        &:nth-child(5) {
+            @apply w-2/12;
+        }
+        &:nth-child(6) {
+            @apply w-2/12;
+        }
+        &:nth-child(7) {
+            @apply w-2/12 pr-0;
+        }
+        &:last-child {
+            @apply ml-auto;
+        }
     }
 }

@@ -1,5 +1,5 @@
 .defectDetail {
-    @apply bg-[--color1];
+    @apply flex flex-col h-full bg-[--color1];
     .header {
         @apply border-b border-[--color4];
         .title {
@@ -32,6 +32,6 @@
     }
 
     .map {
-
+        @apply h-full mt-3;
     }
 }

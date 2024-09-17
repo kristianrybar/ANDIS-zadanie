@@ -53,7 +53,7 @@ const DefectDetail = (props: Props) => {
               <div>Stav: {d.defectState}</div>
               <div>Vytvorený: {d.createdDTime.toString().replace('T', ', ')}</div>
               <div>Popis: {d.description || 'Bez popisu'}</div>
-              <div>Pretrvávanie nedostatku: {d && d.isPersistent ? 'Pretrváva' : 'Nepretrváva'}</div>
+              <div>Pretrvávanie nedostatku: {d.isPersistent ? 'Pretrváva' : 'Nepretrváva'}</div>
             </div>
 
             <div>
@@ -82,7 +82,10 @@ const DefectDetail = (props: Props) => {
           </div>
 
           <div className={css.map}>
-            <Map />
+            <Map
+              zoom={14}
+              defects={[findedDefect]}
+            />
           </div>
         </>
       }

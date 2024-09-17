@@ -6,18 +6,18 @@ const removeDiacritics = (text: string) => {
 };
 
 // Pomocná funkcia na zvýraznenie textu
-const highlightText = (text: string, searchTerm: string) => {
-    if (!searchTerm) return text;
+const highlightSearchedText = (text: string, searchTerm: string) => {
+    if (!searchTerm) return text
 
-    const regex = new RegExp(`(${searchTerm})`, "gi");
-    const parts = text.split(regex);
+    const regex = new RegExp(`(${searchTerm})`, 'gi')
+    const parts = text.split(regex)
 
     return parts.map((part, index) => 
         removeDiacritics(part.toLowerCase()) === removeDiacritics(searchTerm.toLowerCase()) 
             ? <span key={index} style={{ backgroundColor: 'orange' }}>{part}</span> 
             : part
-    );
-};
+    )
+}
 
 // Definícia typu objektu
 type Item = {
@@ -54,7 +54,7 @@ const App = () => {
             <ul>
                 {filteredItems.map((item) => (
                     <li key={item.id}>
-                        <strong>{highlightText(item.name, searchTerm)}</strong> - {highlightText(item.description, searchTerm)}
+                        <strong>{highlightSearchedText(item.name, searchTerm)}</strong> - {highlightSearchedText(item.description, searchTerm)}
                     </li>
                 ))}
             </ul>

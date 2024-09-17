@@ -16,6 +16,10 @@ export const createFilters = (defects: TDefect[]) => {
       filterName: 'Obec',
       filterOptions: [] as TFilterOption[]
     },
+    {
+      filterName: 'Stav nedostatku',
+      filterOptions: [] as TFilterOption[]
+    },
   ]
   
   // cruciality
@@ -29,14 +33,17 @@ export const createFilters = (defects: TDefect[]) => {
   
   defects.forEach(d => {
     // construction year
-    _updateFilterOptions(filters, 'Rok výstavby', d.technicalObject.constructionYear, defects, 'constructionYear')
+    _createFilterOptions(filters, 'Rok výstavby', d.technicalObject.constructionYear, defects, 'constructionYear')
     filters.find(f => f.filterName == 'Rok výstavby')?.filterOptions.sort((a: any, b: any) => b.name - a.name) // construction year - sort zostupne podla roka
 
     // supervisor
-    _updateFilterOptions(filters, 'Zodpovedná osoba', d.technicalObject.supervisor, defects, 'supervisor')
+    _createFilterOptions(filters, 'Zodpovedná osoba', d.technicalObject.supervisor, defects, 'supervisor')
 
     // municapility
-    _updateFilterOptions(filters, 'Obec', d.technicalObject.municipality, defects, 'municipality')
+    _createFilterOptions(filters, 'Obec', d.technicalObject.municipality, defects, 'municipality')
+
+    // defect state
+    _createFilterOptions(filters, 'Stav nedostatku', d.defectState, defects, 'defectsState')
   })
 
   return filters
@@ -162,7 +169,7 @@ const _getCountByCruciality_andCreateOptions = (defects) => {
   }
 }
 
-const _updateFilterOptions = (filters, filterName, value, defects, comparisonKey) => {
+const _createFilterOptions = (filters, filterName, value, defects, comparisonKey) => {
   if (!value) 
     return
 

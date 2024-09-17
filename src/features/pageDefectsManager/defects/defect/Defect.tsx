@@ -3,11 +3,13 @@ import { TDefect } from '../../_t/TDefect'
 import { FaArrowRightLong } from "react-icons/fa6"
 import UiInput from '~/app_shared/ui_input/UiInput'
 import css from './Defect.module.css'
+import { highlightSearchedText } from '../_utils/highlightSearchedText'
 
 type Props = {
     defect: TDefect
     onOpenDetail: () => void
     onCheckbox: () => void
+    searchQuery: string
 }
 
 const Defect = (props: Props) => {
@@ -24,20 +26,30 @@ const Defect = (props: Props) => {
                 />
             </div>
             <div>
-                <div>{d.technicalObject.constructionYear}</div>
-                <div>{d.technicalObject.technicalObjectType?.voltageLevel.voltageLevelName}</div>
+                <div>
+                    {highlightSearchedText(d.technicalObject.technicalObjectName, props.searchQuery)}&nbsp;
+                    {highlightSearchedText(`${d.technicalObject.constructionYear ? '('+d.technicalObject.constructionYear?.toString()+')' : ''}`, props.searchQuery)}</div>
+                <div>
+                    {highlightSearchedText(d.defectType.defectTypeName, props.searchQuery)}&nbsp;
+                    {highlightSearchedText(`${d.defectType.defaultSeverityLevel ? '('+d.defectType.defaultSeverityLevel+')' : ''}`, props.searchQuery)}
+                </div>
             </div>
             <div>
-                <div>isPersistent: {props.defect.isPersistent ? <b>ANO</b> : <b>NIE</b>}</div>
-                <div>severityLevel: <b>{d.defectType.defaultSeverityLevel}</b></div>
+                <div>{highlightSearchedText(d.defectState, props.searchQuery)}</div>
             </div>
-            <div className={css.leftPart}>
-                <div>{d.defectType.defectTypeName}</div>
-                <div>{d.technicalObject.technicalObjectName}</div>
+            <div>
+                <div>{highlightSearchedText(d.isPersistent ? 'Pretrváva' : 'Nepretrváva', props.searchQuery)}</div>
             </div>
-            <div className={css.rightPart}>
-                <div>vytvoreny: {d.createdDTime.toString().replace('T', ', ')}</div>
-                <div>{d.technicalObject.municipality}</div>
+            <div>
+                <div>{highlightSearchedText(d.technicalObject.isCrucial ? 'Áno' : d.technicalObject.isCrucial == false ? 'Nie' : 'Bez určenia', props.searchQuery)}</div>
+            </div>
+            <div>
+                <div>{highlightSearchedText(d.technicalObject.technicalObjectType?.voltageLevel.voltageLevelName, props.searchQuery)}</div>
+                <div>{highlightSearchedText(d.technicalObject.supervisor, props.searchQuery)}</div>
+            </div>
+            <div>
+                <div>{highlightSearchedText(d.technicalObject.municipality, props.searchQuery)}</div>
+                <div>{highlightSearchedText(d.createdDTime.toString().replace('T', ',\u00A0'), props.searchQuery)}</div>
             </div>
             <div 
                 className={css.arrowRight}

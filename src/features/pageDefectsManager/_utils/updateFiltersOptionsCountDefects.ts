@@ -57,6 +57,13 @@ export const updateFiltersOptionsCountDefects = (filteredDefects) => {
       o.countDefects = filteredDefects.filter(def => def.technicalObject.municipality == o.name).length
     })
 
+
+    // supervisor
+    const filter8 = draft.find(filter => filter.filterName == 'Stav nedostatku')
+    filter8.filterOptions.map(o => {
+      o.countDefects = filteredDefects.filter(def => def.defectState == o.name).length
+    })
+
   })
 }
 

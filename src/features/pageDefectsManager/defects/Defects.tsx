@@ -10,12 +10,14 @@ import { filterByDateRange } from './_utils/filterByDateRange'
 import { filterByCruciality } from './_utils/filterByCruciality'
 import { filterBySupervisor } from './_utils/filterBySupervisor'
 import { filterByMunicipality } from './_utils/filterByMunicipality'
+import { filterByDefectState } from './_utils/filterByDefectState'
 import { sortByDate } from './_utils/sortByDate'
 import { UiDatePickerRange } from '~/app_shared/ui_datePickerRange/UiDatePickerRange'
 import UiButton from '~/app_shared/ui_button/UiButton'
 import Defect from './defect/Defect'
 import UiInput from '~/app_shared/ui_input/UiInput'
 import UiDropdown from '~/app_shared/ui_dropdown/UiDropdown'
+import Map from '~/app_shared/map/Map'
 import { FaMapMarkedAlt } from 'react-icons/fa'
 import { FaListOl } from 'react-icons/fa'
 import css from './Defects.module.css'
@@ -54,6 +56,7 @@ const Defects = (props: Props) => {
             .filter(defect => filterByCruciality(defect, _findAndReturnFilterByName('Významný technický objekt')))
             .filter(defect => filterBySupervisor(defect, _findAndReturnFilterByName('Zodpovedná osoba')))
             .filter(defect => filterByMunicipality(defect, _findAndReturnFilterByName('Obec')))
+            .filter(defect => filterByDefectState(defect, _findAndReturnFilterByName('Stav nedostatku')))
         
         set_filteredDefects(updatedDefects)
     }, [searchQuery, dropdownQuery, dateFilter, props.defects, props.filters])
@@ -111,31 +114,35 @@ const Defects = (props: Props) => {
             </div>
 
             {listMode == 'table' && 
-                <div className={css.scrollDefects}>
-                    <div className={css.defectsList}>
-                        <div className={css.labels}>
-                            <div>typ nedostatku | stav</div>
-                            <div>tech. objekt | rok vystavby</div>
-                            <div>uroven napatia | uroven zavaznosti</div>
-                            <div>datum vytvorenia | obec</div>
-                        </div>
-                        {filteredDefects.length
-                            ? filteredDefects.map(d => 
-                                <Defect
-                                    key={d.defectID}
-                                    defect={d}
-                                    onOpenDetail={() => props.onOpenDetail(d.defectID)}
-                                    onCheckbox={() => console.log}
-                                />
-                            )
-                            : <div className={css.noDefects}>Žiadne výsledky</div>
-                        }
+                <div className={css.defectsList}>
+                    <div className={css.labels}>
+                        <div>tech. objekt (rok výstavby)<hr />typ nedostatku (úroveň závažnosti)</div>
+                        <div>stav nedostatku</div>
+                        <div>pretrvávanie nedostatku</div>
+                        <div>významný tech. objekt</div>
+                        <div>úroveň napätia<hr className='!max-w-[117px]' />zodpovedná osoba</div>
+                        <div>obec<hr className='!max-w-[112px]' />datum vytvorenia</div>
                     </div>
+                    {filteredDefects.length
+                        ? filteredDefects.map(d => 
+                            <Defect
+                                key={d.defectID}
+                                defect={d}
+                                onOpenDetail={() => props.onOpenDetail(d.defectID)}
+                                onCheckbox={() => console.log}
+                                searchQuery={searchQuery}
+                            />
+                        )
+                        : <div className={css.noDefects}>Žiadne výsledky</div>
+                    }
                 </div>
             }
             {listMode == 'map' &&
                 <div className={css.defectsMap}>
-                    TU BUDU DEFECTS ZOBRAZENE V MAPE, TBD...
+                    <Map 
+                        zoom={14}
+                        defects={filteredDefects.filter(d => d.defectTypeIdentifier > '0')}
+                    />
                 </div>
             }
         </div>

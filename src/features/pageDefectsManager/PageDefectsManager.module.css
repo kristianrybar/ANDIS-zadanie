@@ -1,5 +1,5 @@
 .homePageContainer {
-    @apply w-full grow max-w-[1300px] mx-auto relative bg-[--color1] p-4 pb-40 flex gap-4 rounded-xl mt-4;
+    @apply w-full grow max-w-[1500px] mx-auto relative bg-[--color1] p-4 flex gap-4 rounded-xl mt-4;
 }
 
 

@@ -42,22 +42,43 @@
         }
     }
 
-    .scrollDefects {
+    .defectsList {
         @apply mt-2 grow;
-
-        .defectsList {
-            @apply h-full;
-            .labels {
-                @apply w-full flex items-center justify-between text-sm px-3;
-                font-variant:small-caps;
-            }
-            .noDefects {
-                @apply h-full flex justify-center items-center font-semibold text-lg;
+        .labels {
+            @apply w-full flex items-center text-sm pb-1 pl-[44px] pr-[48px];
+            font-variant: small-caps;
+            & > div {
+                @apply px-2;
+                &:nth-child(1) {
+                    @apply w-3/12 pl-0;
+                }
+                &:nth-child(2) {
+                    @apply w-1/12;
+                }
+                &:nth-child(3) {
+                    @apply w-2/12;
+                }
+                &:nth-child(4) {
+                    @apply w-2/12;
+                }
+                &:nth-child(5) {
+                    @apply w-2/12;
+                }
+                &:last-child {
+                    @apply w-2/12 pr-0;
+                }
             }
         }
+        .noDefects {
+            @apply h-full flex justify-center items-center font-semibold text-lg;
+        }
     }
-
+    
     .defectsMap {
-        @apply h-full flex items-center justify-center text-3xl;
+        @apply mt-2 pb-3 rounded;
+        height: calc(100dvh - 132px);
+    }
+    hr {
+        @apply border-[--color4] max-w-[226px] relative top-[1px];
     }
 }

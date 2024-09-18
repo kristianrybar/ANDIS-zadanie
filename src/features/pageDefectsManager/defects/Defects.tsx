@@ -24,10 +24,13 @@ import css from './Defects.module.css'
 
 
 type Props = {
+    selectedDefects: TDefect[]
     defects: TDefect[]
     filters: TFilter[]
     onOpenDetail: (defectID) => void
     onFilterDefects: (filteredDefects) => void
+    onOpenForm: () => void
+    onSelectDefect: (defect, isChecked) => void
 }
 
 const Defects = (props: Props) => {
@@ -39,6 +42,19 @@ const Defects = (props: Props) => {
         startDate: '',
         endDate: '',
     })
+
+    const isDefectChecked = (defectID) => {
+        if (!defectID) 
+            return false
+        if (!props.selectedDefects.length) 
+            return false
+        
+        const checkedDefect = props.selectedDefects.find(d => d.defectID == defectID)
+        if (!checkedDefect) 
+            return false
+        
+        return true
+    }
 
     const _findAndReturnFilterByName = (filterName) => {
         return props.filters.find(f => f.filterName == filterName)
@@ -93,7 +109,7 @@ const Defects = (props: Props) => {
 
             <div className={css.actionBar}>
                 <UiButton
-                    onClick={() => console.log('create investment request')}
+                    onClick={props.onOpenForm}
                 >
                     Vytvoriť investičnú požiadavku
                 </UiButton>
@@ -129,8 +145,9 @@ const Defects = (props: Props) => {
                                 key={d.defectID}
                                 defect={d}
                                 onOpenDetail={() => props.onOpenDetail(d.defectID)}
-                                onCheckbox={() => console.log}
+                                onCheckbox={(e) => props.onSelectDefect(d, e.target.checked)}
                                 searchQuery={searchQuery}
+                                checked={isDefectChecked(d.defectID)}
                             />
                         )
                         : <div className={css.noDefects}>Žiadne výsledky</div>

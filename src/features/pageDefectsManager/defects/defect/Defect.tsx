@@ -8,8 +8,9 @@ import { highlightSearchedText } from '../_utils/highlightSearchedText'
 type Props = {
     defect: TDefect
     onOpenDetail: () => void
-    onCheckbox: () => void
+    onCheckbox: (e) => void
     searchQuery: string
+    checked: boolean
 }
 
 const Defect = (props: Props) => {
@@ -22,6 +23,7 @@ const Defect = (props: Props) => {
                     wrapperClassName='p-3'
                     type='checkbox'
                     value='mock_checkbox_value'
+                    checked={props.checked}
                     onChange={props.onCheckbox}
                 />
             </div>

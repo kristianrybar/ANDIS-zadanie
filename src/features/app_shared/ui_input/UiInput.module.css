@@ -1,13 +1,13 @@
 .uiInputWrapper {
-    @apply h-[40px] flex justify-center items-center;
+    @apply flex flex-col justify-center items-start text-sm font-medium;
     &.uiCheckboxWrapper {
-        @apply h-auto gap-2;
+        @apply h-auto gap-2 flex-row-reverse justify-end font-normal;
     }
     &.disabled {
         @apply text-gray-400;
     }
     input {
-        @apply relative h-full w-full border border-[--color4] rounded px-3 py-1;
+        @apply h-[40px] relative w-full border border-[--color4] rounded px-3 py-1;
         &.checkbox {
             @apply w-5 h-5 shadow-none appearance-none p-0 border-[--color5] bg-white hover:bg-[--color3] cursor-pointer;
             &:checked {

@@ -17,15 +17,21 @@ type Props = {
     disabled?: boolean
     onFocus?: (event) => void
     onClearOption?: () => any
+    width?: string
 }
 
 
 const UiDropdown = (props: Props) => {
     return (
-        <div className={`
-            ${css.wrapper}
-            ${props.disabled && css.disabled}
-        `}>
+        <div 
+            className={`
+                ${css.wrapper}
+                ${props.disabled && css.disabled}
+            `}
+            style={{ 
+                width: props.width || '100%'
+            }}
+        >
             <label className={css.inputLabel}>{props.label}</label>
             <Dropdown
                 className={css.dropdown}

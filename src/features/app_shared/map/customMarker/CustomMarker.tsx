@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Marker, Popup, Tooltip } from 'react-leaflet'
 import { TDefect } from '~/pageDefectsManager/_t/TDefect'
+import './custom.css'
 
 type Props = {
     defect: TDefect
@@ -29,11 +30,13 @@ const CustomMarker = (props: Props) => {
             <Tooltip>
                 {d.technicalObject.technicalObjectName}
             </Tooltip>
-            <Popup>
-                <div>ID nedostatku:  {d.defectID}</div>
-                <div>Typ nedostatku:  {d.defectType.defectTypeName}</div>
-                <div>Techn. objekt:  {d.technicalObject.technicalObjectName}</div>
-                <div>Typ techn. objekt:  {d.technicalObject.technicalObjectType?.technicalObjectTypeName}</div>
+            <Popup className='bg-red-200 border'>
+                <div className='bg-blue-100'>
+                    <div>ID nedostatku:  {d.defectID}</div>
+                    <div>Typ nedostatku:  {d.defectType.defectTypeName}</div>
+                    <div>Techn. objekt:  {d.technicalObject.technicalObjectName}</div>
+                    <div>Typ techn. objekt:  {d.technicalObject.technicalObjectType?.technicalObjectTypeName}</div>
+                </div>
             </Popup>
         </Marker>
     )

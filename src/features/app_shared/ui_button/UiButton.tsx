@@ -3,10 +3,10 @@ import css from './UiButton.module.css'
 
 
 type Props = {
-    type?: 'button' | 'submit'
     children: string | string[] | ReactNode
+    onClick?: (...args: any[]) => any
+    type?: 'button' | 'submit'
     disabled?: boolean
-    onClick: (...args: any[]) => any
     className?: string
 }
 
@@ -18,7 +18,7 @@ const UiButton = (props: Props) => {
                 ${css.uiButton}
                 ${css.skin_default}
             `}
-            onClick={props.onClick}
+            onClick={props.onClick || (() => {})}
             disabled={props.disabled || false}
         >
             {props.children || 'Click me'}

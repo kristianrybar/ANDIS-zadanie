@@ -1,15 +1,17 @@
 import css from './UiInput.module.css'
 
 type Props = {
-    value: string
+    value: string | number
     onChange: (e) => void
     // OPTIONAL
     label?: any
-    type?: 'text' | 'checkbox'
+    type?: 'text' | 'checkbox' | 'date' | 'number'
     placeholder?: string
     checked?: boolean
     disabled?: boolean
+    // CSS
     wrapperClassName?: string
+    width?: string
 }
 
 const UiInput = (props: Props) => {
@@ -21,7 +23,11 @@ const UiInput = (props: Props) => {
                 ${props.type == 'checkbox' && css.uiCheckboxWrapper}
                 ${props.disabled && css.disabled}
             `}
+            style={{ 
+                width: props.width || '100%'
+            }}
         >
+            {props.label || ''}
             <input
                 className={`
                     ${props.type == 'checkbox' && css.checkbox}
@@ -33,7 +39,6 @@ const UiInput = (props: Props) => {
                 checked={props.checked || false}
                 disabled={props.disabled || false}
             />
-            {props.label || ''}
         </label>
     )
 }

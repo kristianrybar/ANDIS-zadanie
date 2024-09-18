@@ -7,6 +7,7 @@ import { resetAllFilters } from './_utils/resetAllFilters'
 import { toggleOffOnFilterOption } from './_utils/toggleOffOnFilterOption'
 import { createFilters } from './_utils/createFilters'
 import { updateFiltersOptionsCountDefects } from './_utils/updateFiltersOptionsCountDefects'
+import FormInvestmentRequest from './formInvestmentRequest/FormInvestmentRequest'
 import FiltersSidebar from './filtersSidebar/FiltersSidebar'
 import Defects from './defects/Defects'
 import DefectDetail from './defectDetail/DefectDetail'
@@ -16,9 +17,11 @@ import css from './PageDefectsManager.module.css'
 
 const PageDefectsManager = () => {
   const [defects, set_defects] = useState<TDefect[]>([])
-  const [mode, set_mode] = useState<'list' | 'detail'>('list')
   const [filters, set_filters] = useState<TFilter[]>([])
-
+  const [selectedDefects, set_selectedDefects] = useState<TDefect[]>([])
+  const [mode, set_mode] = useState<'list' | 'detail'>('list')
+  const [isOpenForm, set_isOpenForm] = useState<boolean>(false)
+0
   const navigate = useNavigate()
   const location = useLocation()
 
@@ -37,10 +40,10 @@ const PageDefectsManager = () => {
       return
     
     navigate({
-        pathname: '/defectsManager/',
-        search: createSearchParams({
-          defectId
-        }).toString()
+      pathname: '/defectsManager/',
+      search: createSearchParams({
+        defectId
+      }).toString()
     })
     set_mode('detail')
   }
@@ -60,9 +63,11 @@ const PageDefectsManager = () => {
     const initialFilters = createFilters(defects)
     if (!initialFilters) 
       return
-    console.log(initialFilters)
+
     set_filters(initialFilters)
   }, [defects])
+
+  console.log(selectedDefects)
 
   return (<>
     <div className={css.homePageContainer}>
@@ -79,9 +84,16 @@ const PageDefectsManager = () => {
           <div className='w-10/12'>
             <Defects
               defects={defects}
-              onOpenDetail={(defectID) => openDefectDetail_andCreateUrlSearchParams(defectID)}
               filters={filters}
+              selectedDefects={selectedDefects}
+              onOpenDetail={(defectID) => openDefectDetail_andCreateUrlSearchParams(defectID)}
               onFilterDefects={(filteredDefects) => set_filters(updateFiltersOptionsCountDefects(filteredDefects))}
+              onOpenForm={() => set_isOpenForm(true)}
+              onSelectDefect={(d, isChecked) => {
+                isChecked
+                  ? set_selectedDefects(prev => ([...prev, d]))
+                  : set_selectedDefects(prev => prev.filter(defect => defect.defectID != d.defectID))
+              }}
             />
           </div>
         </>
@@ -93,6 +105,12 @@ const PageDefectsManager = () => {
             defects={defects}
           />
         </div>
+      }
+      {isOpenForm &&
+        <FormInvestmentRequest
+          onClose={() => set_isOpenForm(false)}
+          selectedDefects={selectedDefects}
+        />
       }
     </div><Test /></>
   )

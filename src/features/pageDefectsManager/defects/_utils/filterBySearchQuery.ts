@@ -8,6 +8,7 @@ export const filterBySearchQuery = (defect: TDefect, searchQuery) => {
     const _searchQuery = ignoreDiacritics(searchQuery.toLowerCase())
 
     const fieldsToCheck = [
+        defect.defectID,
         defect.defectType.defectTypeName,
         '(' + defect.technicalObject.constructionYear + ')',
         '(' + defect.defectType.defaultSeverityLevel + ')',

@@ -1,7 +1,7 @@
 export const filterByDateRange = (dateFilter, createdDate) => {
     if (!dateFilter.startDate && !dateFilter.endDate) 
         return true
-
+    
     const comparingDate = new Date(createdDate)
     comparingDate.setHours(0,0,0,0)
     
@@ -38,6 +38,6 @@ export const filterByDateRange = (dateFilter, createdDate) => {
         if (startDate <= comparingDate && endDate >= comparingDate) 
             return true
     }
-
+    
     return false
 }

@@ -1,6 +1,6 @@
 import { ignoreDiacritics } from '~/pageDefectsManager/_utils/ignoreDiacritics'
 
-export const highlightSearchedText = (text: string, searchTerm: string) => {
+export const highlightText = (text: string, searchTerm: string) => {
     if (!searchTerm || !text) 
         return text
 

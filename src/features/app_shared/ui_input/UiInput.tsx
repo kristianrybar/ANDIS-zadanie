@@ -12,6 +12,7 @@ type Props = {
     // CSS
     wrapperClassName?: string
     width?: string
+    maxWidth?: string
 }
 
 const UiInput = (props: Props) => {
@@ -24,7 +25,8 @@ const UiInput = (props: Props) => {
                 ${props.disabled && css.disabled}
             `}
             style={{ 
-                width: props.width || '100%'
+                width: props.width || '100%',
+                maxWidth: props.maxWidth || 'none'
             }}
         >
             {props.label || ''}

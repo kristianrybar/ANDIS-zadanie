@@ -8,7 +8,7 @@ import { toggleOffOnFilterOption } from './_utils/toggleOffOnFilterOption'
 import { createFilters } from './_utils/createFilters'
 import { updateFiltersOptionsCountDefects } from './_utils/updateFiltersOptionsCountDefects'
 import FormInvestmentRequest from './formInvestmentRequest/FormInvestmentRequest'
-import FiltersSidebar from './filtersSidebar/FiltersSidebar'
+import FilterControlSidebbar from './filterControlSidebbar/FilterControlSidebbar.module'
 import Defects from './defects/Defects'
 import DefectDetail from './defectDetail/DefectDetail'
 import Test from './Test'
@@ -21,11 +21,11 @@ const PageDefectsManager = () => {
   const [selectedDefects, set_selectedDefects] = useState<TDefect[]>([])
   const [mode, set_mode] = useState<'list' | 'detail'>('list')
   const [isOpenForm, set_isOpenForm] = useState<boolean>(false)
-0
+
   const navigate = useNavigate()
   const location = useLocation()
 
-1
+
   const getMockCoreData = async () => {
     //await new Promise(resolve => setTimeout(resolve, 1000))
     const resp = await mock_GET_ZADANIE_DATA()
@@ -53,6 +53,33 @@ const PageDefectsManager = () => {
     set_mode('list')
   }
 
+  const selectDefect = (defect: TDefect) => {
+    if (!defect) 
+      return
+    
+    set_selectedDefects(prev => ([...prev, defect]))
+  }
+
+  const deselectDefect = (defectID) => {
+    if (!defectID)
+      return
+    
+    set_selectedDefects(prev => prev.filter(defect => defect.defectID != defectID))
+  }
+
+
+  const isDefectChecked = (defectID) => {
+    if (!defectID) 
+        return false
+    if (!selectedDefects.length) 
+        return false
+    
+    const checkedDefect = selectedDefects.find(d => d.defectID == defectID)
+    if (!checkedDefect) 
+        return false
+    return true
+  }
+
   useEffect(() => {
     getMockCoreData()
   }, [])
@@ -74,7 +101,7 @@ const PageDefectsManager = () => {
       {mode == 'list' &&
         <>
           <div className='w-2/12 p-3 bg-[--bg-lighter] rounded-lg border border-[--color4] h-fit'>
-            <FiltersSidebar
+            <FilterControlSidebbar
               filters={filters}
               onCheckbox={(optionIndex, filterName) => set_filters((prev) => toggleOffOnFilterOption(prev, filterName, optionIndex))}
               onResetFilters={() => set_filters(resetAllFilters())}
@@ -89,11 +116,12 @@ const PageDefectsManager = () => {
               onOpenDetail={(defectID) => openDefectDetail_andCreateUrlSearchParams(defectID)}
               onFilterDefects={(filteredDefects) => set_filters(updateFiltersOptionsCountDefects(filteredDefects))}
               onOpenForm={() => set_isOpenForm(true)}
-              onSelectDefect={(d, isChecked) => {
-                isChecked
-                  ? set_selectedDefects(prev => ([...prev, d]))
-                  : set_selectedDefects(prev => prev.filter(defect => defect.defectID != d.defectID))
+              onSelectDefect={(checked, d) => {
+                checked
+                  ? selectDefect(d)
+                  : deselectDefect(d.defectID)
               }}
+              checked={(defectID) => isDefectChecked(defectID)}
             />
           </div>
         </>
@@ -103,6 +131,12 @@ const PageDefectsManager = () => {
           <DefectDetail
             onGoBack={openDefectsList_andClearUrlSearchParams}
             defects={defects}
+            checked={(defectID) => isDefectChecked(defectID)}
+            onSelectDefect={(checked, d) => {
+              checked
+                ? selectDefect(d)
+                : deselectDefect(d.defectID)
+            }}
           />
         </div>
       }

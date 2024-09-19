@@ -8,6 +8,8 @@ import css from './DefectDetail.module.css'
 type Props = {
   onGoBack: () => void
   defects: TDefect[]
+  checked: (d) => boolean
+  onSelectDefect: (checked, d: TDefect) => void
 }
 
 const DefectDetail = (props: Props) => {
@@ -85,6 +87,8 @@ const DefectDetail = (props: Props) => {
             <Map
               zoom={14}
               defects={[findedDefect]}
+              checked={(defectID) => props.checked(defectID)}
+              onCheckbox={(e, d: TDefect) => props.onSelectDefect(e.target.checked, d)}
             />
           </div>
         </>

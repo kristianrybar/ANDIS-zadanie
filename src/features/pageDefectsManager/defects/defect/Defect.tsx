@@ -3,7 +3,7 @@ import { TDefect } from '../../_t/TDefect'
 import { FaArrowRightLong } from "react-icons/fa6"
 import UiInput from '~/app_shared/ui_input/UiInput'
 import css from './Defect.module.css'
-import { highlightSearchedText } from '../_utils/highlightSearchedText'
+import { highlightText } from '../_utils/highlightText'
 
 type Props = {
     defect: TDefect
@@ -20,38 +20,44 @@ const Defect = (props: Props) => {
         <div className={css.defect}>
             <div>
                 <UiInput
-                    wrapperClassName='p-3'
+                    wrapperClassName='p-3 cursor-pointer'
                     type='checkbox'
-                    value='mock_checkbox_value'
                     checked={props.checked}
                     onChange={props.onCheckbox}
+                    value=''
                 />
             </div>
             <div>
                 <div>
-                    {highlightSearchedText(d.technicalObject.technicalObjectName, props.searchQuery)}&nbsp;
-                    {highlightSearchedText(`${d.technicalObject.constructionYear ? '('+d.technicalObject.constructionYear?.toString()+')' : ''}`, props.searchQuery)}</div>
-                <div>
-                    {highlightSearchedText(d.defectType.defectTypeName, props.searchQuery)}&nbsp;
-                    {highlightSearchedText(`${d.defectType.defaultSeverityLevel ? '('+d.defectType.defaultSeverityLevel+')' : ''}`, props.searchQuery)}
+                    {highlightText(d.defectID, props.searchQuery)}
                 </div>
             </div>
             <div>
-                <div>{highlightSearchedText(d.defectState, props.searchQuery)}</div>
+                <div>
+                    {highlightText(d.technicalObject.technicalObjectName, props.searchQuery)}&nbsp;
+                    {highlightText(`${d.technicalObject.constructionYear ? '('+d.technicalObject.constructionYear?.toString()+')' : ''}`, props.searchQuery)}
+                </div>
+                <div>
+                    {highlightText(d.defectType.defectTypeName, props.searchQuery)}&nbsp;
+                    {highlightText(`${d.defectType.defaultSeverityLevel ? '('+d.defectType.defaultSeverityLevel+')' : ''}`, props.searchQuery)}
+                </div>
             </div>
             <div>
-                <div>{highlightSearchedText(d.isPersistent ? 'Pretrváva' : 'Nepretrváva', props.searchQuery)}</div>
+                <div>{highlightText(d.defectState, props.searchQuery)}</div>
             </div>
             <div>
-                <div>{highlightSearchedText(d.technicalObject.isCrucial ? 'Áno' : d.technicalObject.isCrucial == false ? 'Nie' : 'Bez určenia', props.searchQuery)}</div>
+                <div>{highlightText(d.isPersistent ? 'Pretrváva' : 'Nepretrváva', props.searchQuery)}</div>
             </div>
             <div>
-                <div>{highlightSearchedText(d.technicalObject.technicalObjectType?.voltageLevel.voltageLevelName, props.searchQuery)}</div>
-                <div>{highlightSearchedText(d.technicalObject.supervisor, props.searchQuery)}</div>
+                <div>{highlightText(d.technicalObject.isCrucial ? 'Áno' : d.technicalObject.isCrucial == false ? 'Nie' : 'Bez určenia', props.searchQuery)}</div>
             </div>
             <div>
-                <div>{highlightSearchedText(d.technicalObject.municipality, props.searchQuery)}</div>
-                <div>{highlightSearchedText(d.createdDTime.toString().replace('T', ',\u00A0'), props.searchQuery)}</div>
+                <div>{highlightText(d.technicalObject.technicalObjectType?.voltageLevel.voltageLevelName, props.searchQuery)}</div>
+                <div>{highlightText(d.technicalObject.supervisor, props.searchQuery)}</div>
+            </div>
+            <div>
+                <div>{highlightText(d.technicalObject.municipality, props.searchQuery)}</div>
+                <div>{highlightText(d.createdDTime.toString().replace('T', ',\u00A0'), props.searchQuery)}</div>
             </div>
             <div 
                 className={css.arrowRight}

@@ -21,7 +21,7 @@ export const UiDatePickerRange = (props: Props) => {
                     ariaInvalid='okokoook'
                     className={css.uiDatePicker}
                     clearButtonClassName={css.clearButton}
-                    placeholderText='Dátum od...'
+                    placeholderText='13/09/2024'
                     selected={startDate} 
                     onChange={(date) => set_startDate(date)}
                     onSelect={props.onSelectStartDate}
@@ -38,7 +38,7 @@ export const UiDatePickerRange = (props: Props) => {
                 <DatePicker
                     className={css.uiDatePicker}
                     clearButtonClassName={css.clearButton}
-                    placeholderText='Dátum do...'
+                    placeholderText='15/09/2024'
                     selected={endDate} 
                     onChange={(date) => set_endDate(date)}
                     onSelect={props.onSelectEndDate}

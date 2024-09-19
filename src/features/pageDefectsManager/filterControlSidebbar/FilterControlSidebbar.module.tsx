@@ -1,6 +1,6 @@
 import { TFilter } from '../_t/TFilter'
 import FilterGroup from './filterGroup/FilterGroup'
-import css from './FiltersSidebar.module.css'
+import css from './FilterControlSideBar.module.module.css'
 
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
     onResetFilters: () => void
 }
 
-const FiltersSidebar = (props: Props) => {
+const FilterControlSidebbar = (props: Props) => {
     return (
         <>  
             <div 
@@ -33,4 +33,4 @@ const FiltersSidebar = (props: Props) => {
     )
 }
 
-export default FiltersSidebar
+export default FilterControlSidebbar

@@ -5,19 +5,15 @@ import { TDefect } from '~/pageDefectsManager/_t/TDefect'
 
 type Props = {
     defects: TDefect[]
-    currentLatLng
 }
 
 const FitBounds = (props: Props) => {
     const map = useMap()
 
     const finalCoords: LatLngBoundsLiteral = props.defects.map((d) => [d.technicalObject?.gpsCoordinates?.[0], d.technicalObject?.gpsCoordinates?.[1]])
-    finalCoords.push(props.currentLatLng)
     
     useEffect(() => {
         if (!props.defects.length) 
-            return
-        if (!props.currentLatLng) 
             return
         if (!finalCoords) 
             return
@@ -27,7 +23,7 @@ const FitBounds = (props: Props) => {
             return
         
         map.fitBounds(bounds)
-    }, [props.defects, map, props.currentLatLng])
+    }, [props.defects, map])
 
     return null
 }

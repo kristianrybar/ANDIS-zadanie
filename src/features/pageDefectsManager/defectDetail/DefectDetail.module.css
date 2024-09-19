@@ -1,7 +1,7 @@
 .defectDetail {
     @apply flex flex-col h-full bg-[--color1];
     .header {
-        @apply border-b border-[--color4];
+        @apply border-b border-[--color4] mb-2 pb-2;
         .title {
             @apply text-xl font-medium;
         }
@@ -13,21 +13,22 @@
         }
     }
     .content {
+        @apply flex gap-5;
         h3 {
             @apply text-lg font-medium;
         }
-        @apply flex gap-3;
+        
         & > div:first-child {
-            @apply bg-red-100;
+    
         }
         & > div:nth-child(2) {
-            @apply bg-yellow-100;
+            
         }
         & > div:nth-child(3) {
-            @apply bg-green-100;
+            
         }
         & > div:last-child {
-            @apply bg-blue-100;
+            
         }
     }
 

@@ -12,6 +12,8 @@ const coordsBratislavaCity: LatLngExpression = [18.148598, 17.107748]
 type Props = {
   zoom: number
   defects: TDefect[]
+  checked: (defectID) => boolean
+  onCheckbox: (e, d) => void
 }
 
 const Map = (props: Props) => {
@@ -19,29 +21,29 @@ const Map = (props: Props) => {
   const refCurrentLocationMarker = useRef<any>(null)
 
 
-  const getCurrentLocationCoordinates = async () => {
-    if (!navigator.geolocation) {
-      alert('Geolocation is not supported by your browser')
-      return
-    }
+  // const getCurrentLocationCoordinates = async () => {
+  //   if (!navigator.geolocation) {
+  //     alert('Geolocation is not supported by your browser')
+  //     return
+  //   }
 
-    navigator.geolocation.getCurrentPosition((position) => {
-      const lat = position.coords.latitude
-      const lng = position.coords.longitude
-      const coords: LatLngExpression = [lat, lng]
-      if (!lat || !lng)
-        return
+  //   navigator.geolocation.getCurrentPosition((position) => {
+  //     const lat = position.coords.latitude
+  //     const lng = position.coords.longitude
+  //     const coords: LatLngExpression = [lat, lng]
+  //     if (!lat || !lng)
+  //       return
 
-      set_currentLatLng(coords)
-    }, () => {
-      alert('Unable to retrieve your location')
-    })
-  }
+  //     set_currentLatLng(coords)
+  //   }, () => {
+  //     alert('Unable to retrieve your location')
+  //   })
+  // }
 
-  useEffect(() => {
-    getCurrentLocationCoordinates()
-  }, [])
-  console.log(props.defects)
+  // useEffect(() => {
+  //   getCurrentLocationCoordinates()
+  // }, [])
+
   return (
     <MapContainer
       className={css.leafletMap}
@@ -50,9 +52,10 @@ const Map = (props: Props) => {
       scrollWheelZoom={false}
     >
       {/* custom */}
-      <ChangeView 
+      {/* <ChangeView 
         centerCoords={props.defects ? props.defects[0].technicalObject.gpsCoordinates : currentLatLng}
-      />
+      /> */}
+      
       
       
       {/* leaflet */}
@@ -61,21 +64,23 @@ const Map = (props: Props) => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 
-      <Marker ref={refCurrentLocationMarker} position={currentLatLng}>
+      {/* <Marker ref={refCurrentLocationMarker} position={currentLatLng}>
         <Tooltip permanent>
           Vaša aktuálna poloha
         </Tooltip>
-      </Marker>
+      </Marker> */}
 
       {props.defects
         .map((d) => (
           <CustomMarker
             key={d.defectID}
             defect={d}
+            checked={props.checked(d.defectID)}
+            onCheckbox={(e) => props.onCheckbox(e, d)}
           />
       ))}
-
-      <FitBounds defects={props.defects} currentLatLng={currentLatLng} />
+      
+      <FitBounds defects={props.defects} />
     </MapContainer>
   )
 }

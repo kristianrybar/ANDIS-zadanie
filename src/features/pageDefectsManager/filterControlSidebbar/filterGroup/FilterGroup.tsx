@@ -43,12 +43,14 @@ const FilterGroup = (props: Props) => {
                     <UiInput
                         key={index}
                         type='checkbox'
-                        label={<>
-                            {option.name}
-                            <span className={`${css.count} ${!option.countDefects && '!text-gray-400'}`}>
-                                {`(${option.countDefects})`}
-                            </span>
-                        </>} 
+                        label={
+                            <>
+                                {option.name}
+                                <span className={`${css.count} ${!option.countDefects && '!text-gray-400'}`}>
+                                    {`(${option.countDefects})`}
+                                </span>
+                            </>
+                        } 
                         value={option.name}
                         onChange={(e) => props.onCheckbox(e, index)}
                         checked={option.isActive}

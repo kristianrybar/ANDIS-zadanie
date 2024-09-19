@@ -9,7 +9,7 @@ type Props = {
     onResetFilters: () => void
 }
 
-const FilterControlSidebbar = (props: Props) => {
+const FilterControlSideBar = (props: Props) => {
     return (
         <>  
             <div 
@@ -33,4 +33,4 @@ const FilterControlSidebbar = (props: Props) => {
     )
 }
 
-export default FilterControlSidebbar
+export default FilterControlSideBar

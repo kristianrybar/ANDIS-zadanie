@@ -8,7 +8,7 @@ import { toggleOffOnFilterOption } from './_utils/toggleOffOnFilterOption'
 import { createFilters } from './_utils/createFilters'
 import { updateFiltersOptionsCountDefects } from './_utils/updateFiltersOptionsCountDefects'
 import FormInvestmentRequest from './formInvestmentRequest/FormInvestmentRequest'
-import FilterControlSidebbar from './filterControlSidebbar/FilterControlSidebbar.module'
+import FilterControlSideBar from './filterControlSideBar/FilterControlSideBar.module'
 import Defects from './defects/Defects'
 import DefectDetail from './defectDetail/DefectDetail'
 import Test from './Test'
@@ -101,7 +101,7 @@ const PageDefectsManager = () => {
       {mode == 'list' &&
         <>
           <div className='w-2/12 p-3 bg-[--bg-lighter] rounded-lg border border-[--color4] h-fit'>
-            <FilterControlSidebbar
+            <FilterControlSideBar
               filters={filters}
               onCheckbox={(optionIndex, filterName) => set_filters((prev) => toggleOffOnFilterOption(prev, filterName, optionIndex))}
               onResetFilters={() => set_filters(resetAllFilters())}

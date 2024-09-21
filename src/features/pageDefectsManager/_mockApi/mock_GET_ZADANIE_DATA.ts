@@ -1,7 +1,7 @@
 import { api } from '~/zzz_api/core/api'
 
 export const mock_GET_ZADANIE_DATA = async () => {
-    const resp = await api.get_m('/ZADANIE_DATA')
+    const resp = await api.get_m('/api/coreData/ZADANIE_DATA')
     if (resp.error) 
         return resp
     
@@ -11,6 +11,8 @@ export const mock_GET_ZADANIE_DATA = async () => {
     
     return {
         finalDefects: finalDefects,
+        investmentRequestTypes: resp.investmentRequestTypes,
+        investmentRequests: resp.investmentRequests,
     }
 }
 

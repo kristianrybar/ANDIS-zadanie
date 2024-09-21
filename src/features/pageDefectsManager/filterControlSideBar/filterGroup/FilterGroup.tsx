@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react'
 import UiInput from '~/app_shared/ui_input/UiInput'
-import { updateFiltersOptionsCountDefects } from '~/pageDefectsManager/_utils/updateFiltersOptionsCountDefects'
 import css from './FilterGroup.module.css'
+
+const maxCountVisibleOptions = 5
 
 type Props = {
     filterName: string
     options: any[]
     onCheckbox: (e, idx) => void
 }
-const maxCountVisibleOptions = 5
 
 const FilterGroup = (props: Props) => {
     const [visibleOptions, set_visibleOptions] = useState<any[]>([])
@@ -23,14 +23,11 @@ const FilterGroup = (props: Props) => {
     }
 
     useEffect(() => {
-        //console.log(props.options)
         let _visibleOptions = showAll ? props.options : props.options?.slice(0, maxCountVisibleOptions)
-        //console.log(_visibleOptions)
+        if (!_visibleOptions) 
+            return
+        
         set_visibleOptions(_visibleOptions)
-        //console.log(props.filterName)
-        //console.log(props.options)
-        //set_visibleOptions(props.options)
-        //console.log('updated data')
     }, [props.options, showAll, props.onCheckbox])
 
     //console.log(visibleOptions)
@@ -45,10 +42,10 @@ const FilterGroup = (props: Props) => {
                         type='checkbox'
                         label={
                             <>
-                                {option.name}
                                 <span className={`${css.count} ${!option.countDefects && '!text-gray-400'}`}>
                                     {`(${option.countDefects})`}
                                 </span>
+                                {option.name}
                             </>
                         } 
                         value={option.name}

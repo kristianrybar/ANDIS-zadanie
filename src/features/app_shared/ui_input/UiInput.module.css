@@ -1,7 +1,7 @@
 .uiInputWrapper {
     @apply flex flex-col justify-center items-start text-sm font-medium;
     &.uiCheckboxWrapper {
-        @apply h-auto gap-2 flex-row-reverse justify-end font-normal;
+        @apply h-auto gap-2 flex-row-reverse justify-end items-center font-normal;
     }
     &.disabled {
         @apply text-gray-400;
@@ -23,5 +23,8 @@
                 @apply hover:bg-white border-[--color3] cursor-not-allowed;
             }
         }
+    }
+    .error {
+        @apply text-xs text-red-600;
     }
 }

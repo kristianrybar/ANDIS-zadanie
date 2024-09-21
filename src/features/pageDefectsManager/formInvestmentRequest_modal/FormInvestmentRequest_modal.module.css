@@ -1,0 +1,58 @@
+.header {
+    @apply p-5 pb-5 border-b border-[--color4] bg-[--color1];
+
+    h1 {
+        @apply text-[18px] font-semibold;
+    }
+    p {
+        @apply text-sm;
+    }
+
+    .iconClose {
+        @apply absolute top-[22px] right-[22px] text-[24px] w-[44px] h-[44px] flex justify-center items-center rounded-lg hover:bg-[--color3] z-10 cursor-pointer;
+    }
+}
+.formInvestmentRequest {
+    @apply flex flex-col grow bg-[--color1] mb-[80px] overflow-y-auto;
+
+    .selectedDefects {
+        @apply px-5 pt-3 w-full;
+        .toggleButton {
+            @apply mb-3;
+        }
+    }
+    .inputs {
+        @apply p-5 flex flex-wrap items-center pb-16;
+        & > * {
+            @apply mb-4;
+        }
+        & > div {
+            @apply w-full flex items-start;
+            & > *:first-child {
+                @apply pr-2;
+            }
+            & > *:last-child {
+                @apply pl-2;
+            }
+        }
+    }
+    .footer {
+        @apply absolute bottom-0 left-0 right-0 bg-[--color1] w-full flex justify-end self-end mt-auto gap-5 p-5 border-t border-[--color4];
+    }
+
+    .error {
+        @apply text-xs text-red-600;
+    }
+}
+
+@keyframes rotating {
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.animation {
+    animation: rotating 2.5s linear infinite;
+}

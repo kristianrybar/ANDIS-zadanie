@@ -1,6 +1,6 @@
 import { TFilter } from '../_t/TFilter'
 import FilterGroup from './filterGroup/FilterGroup'
-import css from './FilterControlSideBar.module.module.css'
+import css from './FilterControlSideBar.module.css'
 
 
 type Props = {

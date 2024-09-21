@@ -81,7 +81,7 @@ const Defects = (props: Props) => {
                                 <div>pretrvávanie nedostatku</div>
                                 <div>významný tech. objekt</div>
                                 <div>úroveň napätia<hr className='!max-w-[117px]' />zodpovedná osoba</div>
-                                <div>obec<hr className='!max-w-[112px]' />datum vytvorenia</div>
+                                <div>obec<hr className='!max-w-[112px]' />dátum vytvorenia</div>
                                 <div></div>
                             </div>
                         

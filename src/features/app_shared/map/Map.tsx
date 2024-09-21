@@ -47,7 +47,7 @@ const Map = (props: Props) => {
   return (
     <MapContainer
       className={css.leafletMap}
-      center={props.defects ? props.defects[0].technicalObject.gpsCoordinates : currentLatLng}
+      //center={props.defects ? props.defects[0].technicalObject.gpsCoordinates : currentLatLng}
       zoom={props.zoom || 6}
       scrollWheelZoom={false}
     >

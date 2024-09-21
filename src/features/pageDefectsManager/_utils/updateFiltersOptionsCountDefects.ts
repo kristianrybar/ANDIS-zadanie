@@ -4,9 +4,13 @@ export const updateFiltersOptionsCountDefects = (filteredDefects) => {
   return produce((draft) => {
     if (!filteredDefects.length)
       return
-
+    if (!draft.length) 
+      return
+    
     // persistence
     const filter1 = draft.find(filter => filter.filterName == 'Pretrvávanie nedostatku')
+    if (!filter1)
+      return
     filter1.filterOptions.map(o => {
       if (o.name == 'Nepretrváva')
         o.countDefects = filteredDefects.filter(d => !d.isPersistent).length
@@ -16,6 +20,8 @@ export const updateFiltersOptionsCountDefects = (filteredDefects) => {
 
     // severity level
     const filter2 = draft.find(filter => filter.filterName == 'Úroveň závažnosti')
+    if (!filter2)
+      return
     filter2.filterOptions.map(o => {
       if (['1', '2', '3', '4'].includes(o.name))
         o.countDefects = filteredDefects.filter(d => d.defectType.defaultSeverityLevel == o.name).length
@@ -23,12 +29,16 @@ export const updateFiltersOptionsCountDefects = (filteredDefects) => {
 
     // construction year
     const filter3 = draft.find(filter => filter.filterName == 'Rok výstavby')
+    if (!filter3)
+      return
     filter3.filterOptions.map(o => {
       o.countDefects = filteredDefects.filter(def => def.technicalObject.constructionYear == o.name).length
     })
 
     // volatge level
     const filter4 = draft.find(filter => filter.filterName == 'Úroveň napätia')
+    if (!filter4)
+      return
     filter4.filterOptions.map(o => {
       if (['NN Vedenia', 'VN Vedenia', 'VVN Vedenia', 'Trafostanice', 'Elektrické stanice'].includes(o.name))
         o.countDefects = filteredDefects.filter(defect => defect.technicalObject.technicalObjectType?.voltageLevel.voltageLevelName == o.name).length
@@ -36,6 +46,8 @@ export const updateFiltersOptionsCountDefects = (filteredDefects) => {
 
     // cruciality
     const filter5 = draft.find(filter => filter.filterName == 'Významný technický objekt')
+    if (!filter5)
+      return
     filter5.filterOptions.map(o => {
       if (o.name == 'Áno')
         o.countDefects = filteredDefects.filter(d => d.technicalObject.isCrucial).length
@@ -47,12 +59,16 @@ export const updateFiltersOptionsCountDefects = (filteredDefects) => {
 
     // supervisor
     const filter6 = draft.find(filter => filter.filterName == 'Zodpovedná osoba')
+    if (!filter6)
+      return
     filter6.filterOptions.map(o => {
       o.countDefects = filteredDefects.filter(def => def.technicalObject.supervisor == o.name).length
     })
 
     // supervisor
     const filter7 = draft.find(filter => filter.filterName == 'Obec')
+    if (!filter7)
+      return
     filter7.filterOptions.map(o => {
       o.countDefects = filteredDefects.filter(def => def.technicalObject.municipality == o.name).length
     })
@@ -60,6 +76,8 @@ export const updateFiltersOptionsCountDefects = (filteredDefects) => {
 
     // supervisor
     const filter8 = draft.find(filter => filter.filterName == 'Stav nedostatku')
+    if (!filter8)
+      return
     filter8.filterOptions.map(o => {
       o.countDefects = filteredDefects.filter(def => def.defectState == o.name).length
     })

@@ -52,4 +52,16 @@
             @apply w-[5%] ml-auto;
         }
     }
+    &.normalizeRow {
+        @apply justify-between;
+        & > div {
+            @apply w-fit px-3 m-0;
+        }
+        &:nth-child(1) {
+            @apply border-t rounded-t-md;
+        }
+        &:nth-child(2) {
+            @apply border-t rounded-t-none;
+        }
+    }
 }

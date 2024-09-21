@@ -9,10 +9,12 @@ type Props = {
     placeholder?: string
     checked?: boolean
     disabled?: boolean
+    error?: string
     // CSS
     wrapperClassName?: string
     width?: string
     maxWidth?: string
+    min?: number
 }
 
 const UiInput = (props: Props) => {
@@ -35,12 +37,17 @@ const UiInput = (props: Props) => {
                     ${props.type == 'checkbox' && css.checkbox}
                 `}
                 type={props.type || 'text'}
-                value={props.value || ''}
+                value={props.value ? props.value : props.value === 0 ? 0 : ''}
                 placeholder={props.placeholder || 'Vyhľadať...'}
                 onChange={props.onChange}
                 checked={props.checked || false}
                 disabled={props.disabled || false}
+                min={props.min || 0}
             />
+            {props.error && 
+                <div className={css.error}>{props.error}</div>
+            }
+
         </label>
     )
 }

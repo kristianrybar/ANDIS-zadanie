@@ -1,17 +1,18 @@
-import Dropdown, { Option } from 'react-dropdown'
+import Dropdown, { Group, Option } from 'react-dropdown'
 import { TiDelete } from "react-icons/ti";
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import css from './UiDropdown.module.css'
 import './ReactDropdownOverrides.css'
 
 type Props = {
-    value: Option | string
-    options: string[]
+    options: (Group | Option | string)[]
     onChange: (option: Option) => void
     // OPTIONAL
+    value?: Option | string
     label?: string
     placeholder?: string
     hint?: string
+    error?: string 
     invalid?: boolean
     showIcon?: boolean
     disabled?: boolean
@@ -55,6 +56,9 @@ const UiDropdown = (props: Props) => {
             }
             {props.hint &&
                 <p className={css.hint}>{props.hint}</p>
+            }
+            {props.error &&
+                <div className={css.error}>{props.error}</div>
             }
         </div>
     )

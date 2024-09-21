@@ -32,7 +32,7 @@
     white-space: pre-wrap;
     @apply text-sm;
   }
-
-
-
+  .error {
+    @apply text-xs text-red-600 font-medium;
+  }
 }

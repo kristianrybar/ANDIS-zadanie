@@ -17,6 +17,7 @@ const UiButton = (props: Props) => {
             className={`
                 ${css.uiButton}
                 ${css.skin_default}
+                ${props.className}
             `}
             onClick={props.onClick || (() => {})}
             disabled={props.disabled || false}

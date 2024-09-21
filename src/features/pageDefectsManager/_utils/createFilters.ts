@@ -170,7 +170,9 @@ const _getCountByCruciality_andCreateOptions = (defects) => {
 }
 
 const _createFilterOptions = (filters, filterName, value, defects, comparisonKey) => {
-  if (!value) 
+  if (!value || !filterName || !comparisonKey) 
+    return
+  if (!filters.length || !defects.length) 
     return
 
   const objectWithSameValue = _findObjectWithSameValue(filters, filterName, value);

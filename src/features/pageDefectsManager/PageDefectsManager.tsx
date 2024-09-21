@@ -1,5 +1,5 @@
-import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
 import { TFilter } from './_t/TFilter'
 import { mock_GET_ZADANIE_DATA } from './_mockApi/mock_GET_ZADANIE_DATA'
 import { TDefect } from './_t/TDefect'
@@ -10,7 +10,7 @@ import { createFilters } from './_utils/createFilters'
 import { prepareEnumsForInvestmentForm } from './_utils/prepareEnumsForInvestmentForm'
 import { updateFiltersOptionsCountDefects } from './_utils/updateFiltersOptionsCountDefects'
 import LoadingCircle from '~/app_shared/loadingCircle/LoadingCircle'
-import FormInvestmentRequest from './formInvestmentRequest_modal/FormInvestmentRequest_modal'
+import FormInvestmentRequest_modal from './formInvestmentRequest_modal/FormInvestmentRequest_modal'
 import FilterControlSideBar from './filterControlSideBar/FilterControlSideBar.module'
 import Defects from './defects/Defects'
 import DefectDetail from './defectDetail/DefectDetail'
@@ -146,7 +146,7 @@ const PageDefectsManager = () => {
 
       {mode == 'list' && !processing &&
         <>
-          <div className='w-2/12 p-3 bg-[--bg-lighter] rounded-lg border border-[--color4] h-fit'>
+          <div className={css.filterControlSideBarWrapper}>
             <FilterControlSideBar
               filters={filters}
               onCheckbox={(optionIndex, filterName) => set_filters((prev) => toggleOffOnFilterOption(prev, filterName, optionIndex))}
@@ -154,7 +154,7 @@ const PageDefectsManager = () => {
             />
           </div>
           
-          <div className='w-10/12'>
+          <div className={css.defectsWrapper}>
             <Defects
               defects={defects}
               filters={filters}
@@ -163,7 +163,7 @@ const PageDefectsManager = () => {
               onFilterDefects={(filteredDefects) => set_filters(updateFiltersOptionsCountDefects(filteredDefects))}
               onOpenForm={() => {
                 !selectedDefects.length
-                  ? alert('No defects are selected')
+                  ? alert('Nie su vybrané žiadne nedostatky')
                   : set_isOpenForm(true)
               }}
               onSelectDefect={(checked, d) => {
@@ -177,7 +177,7 @@ const PageDefectsManager = () => {
         </>
       }
       {mode == 'detail' && !processing &&
-        <div className='w-full'>
+        <div className={css.defectDetailWrapper}>
           <DefectDetail
             onGoBack={openDefectsList_andClearUrlSearchParams}
             defects={defects}
@@ -190,9 +190,9 @@ const PageDefectsManager = () => {
           />
         </div>
       }
-
+      
       {isOpenForm &&
-        <FormInvestmentRequest
+        <FormInvestmentRequest_modal
           onClose={() => set_isOpenForm(false)}
           selectedDefects={selectedDefects}
           formEnums={formEnums}

@@ -175,7 +175,7 @@ const _createFilterOptions = (filters, filterName, value, defects, comparisonKey
   if (!filters.length || !defects.length) 
     return
 
-  const objectWithSameValue = _findObjectWithSameValue(filters, filterName, value);
+  const objectWithSameValue = _findObjectWithSameValue(filters, filterName, value)
   if (objectWithSameValue) 
     return
 
@@ -184,9 +184,9 @@ const _createFilterOptions = (filters, filterName, value, defects, comparisonKey
     name: value,
     isActive: false,
     countDefects: countDefects,
-  };
+  }
 
-  const targetFilter = filters.find(f => f.filterName == filterName);
+  const targetFilter = filters.find(f => f.filterName == filterName)
   if (!targetFilter)
     return
   

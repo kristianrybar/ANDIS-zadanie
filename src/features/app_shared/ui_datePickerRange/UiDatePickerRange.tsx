@@ -18,7 +18,6 @@ export const UiDatePickerRange = (props: Props) => {
             <div>
                 <span>Od:</span>
                 <DatePicker
-                    ariaInvalid='okokoook'
                     className={css.uiDatePicker}
                     clearButtonClassName={css.clearButton}
                     placeholderText='13/09/2024'
@@ -51,6 +50,7 @@ export const UiDatePickerRange = (props: Props) => {
                     dateFormat='dd/MM/yyyy'
                 />
             </div>
+            <div className={css.hint}>Zoradiť podľa dátumu vytvorenia</div>
         </div>
     )
 }

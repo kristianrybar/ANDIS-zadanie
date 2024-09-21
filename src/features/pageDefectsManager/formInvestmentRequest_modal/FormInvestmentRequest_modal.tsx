@@ -3,10 +3,10 @@ import { IoClose } from 'react-icons/io5'
 import { Option } from 'react-dropdown'
 import { validateFormData_andShouldReturnNewErrors } from './_utils/validateFormData_andShouldReturnNewErrors'
 import { TDefect } from '../_t/TDefect'
+import { PiSpinner } from 'react-icons/pi'
 import useInvestmentRequestCreating from './_hooks/useInvestmentRequestCreating'
 import Defect from '../defects/defect/Defect'
 import UiModalContainer from '~/app_shared/ui_modalContainer/UiModalContainer'
-import { PiSpinner } from 'react-icons/pi'
 import UiButton from '~/app_shared/ui_button/UiButton'
 import UiInput from '~/app_shared/ui_input/UiInput'
 import UiDropdown from '~/app_shared/ui_dropdown/UiDropdown'
@@ -19,7 +19,7 @@ type Props = {
   onSuccessSubmit: () => void
 }
 
-const FormInvestmentRequest = (props: Props) => {
+const FormInvestmentRequest_modal = (props: Props) => {
   const [errorAPI, set_errorAPI] = useState('')
   const [proccesing, set_processing] = useState<boolean>(false)
   const [showSelectedDefects, set_showSelectedDefects] = useState<boolean>(false)
@@ -52,7 +52,7 @@ const FormInvestmentRequest = (props: Props) => {
     estimatedInvestmentCosts: '',
     proposedSolution: '',
     defectsIDs: ''
-  });
+  })
 
   const transformedInvestmentRequestTypes: Option[] = props.formEnums.investmentRequestTypes.map(item => ({
     value: item.investmentRequestTypeIdentifier,
@@ -95,6 +95,7 @@ const FormInvestmentRequest = (props: Props) => {
   return (
     <UiModalContainer
       maxHeight='90%'
+      maxWidth='1100px'
     >
       <header className={css.header}>
         <h1>Vytvorenie investičnej požiadavky</h1>
@@ -280,7 +281,7 @@ const FormInvestmentRequest = (props: Props) => {
             Zrušiť
           </UiButton>
           <UiButton
-            className='min-w-20 flex justify-center items-center'
+            className={css.submitButton}
             type='submit'
           >
             {!proccesing 
@@ -294,4 +295,4 @@ const FormInvestmentRequest = (props: Props) => {
   )
 }
 
-export default FormInvestmentRequest
+export default FormInvestmentRequest_modal

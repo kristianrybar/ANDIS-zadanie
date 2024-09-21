@@ -1,5 +1,5 @@
 import Dropdown, { Group, Option } from 'react-dropdown'
-import { TiDelete } from "react-icons/ti";
+import { TiDelete } from 'react-icons/ti'
 import { IoIosArrowDown, IoIosArrowUp } from 'react-icons/io'
 import css from './UiDropdown.module.css'
 import './ReactDropdownOverrides.css'
@@ -13,10 +13,8 @@ type Props = {
     placeholder?: string
     hint?: string
     error?: string 
-    invalid?: boolean
     showIcon?: boolean
     disabled?: boolean
-    onFocus?: (event) => void
     onClearOption?: () => any
     width?: string
 }
@@ -36,10 +34,9 @@ const UiDropdown = (props: Props) => {
             <label className={css.inputLabel}>{props.label}</label>
             <Dropdown
                 className={css.dropdown}
-                controlClassName={`${css.control} ${props.invalid && css.invalid}`}
+                controlClassName={css.control}
                 menuClassName={`${css.menu}`}
                 options={props.options}
-                //onFocus={props.onFocus}
                 onChange={(option: Option) => props.onChange(option)}
                 value={props.value || ''}
                 placeholder={props.placeholder || 'Zoradiť...'}

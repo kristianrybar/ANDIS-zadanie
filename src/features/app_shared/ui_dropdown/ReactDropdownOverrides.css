@@ -1,5 +1,5 @@
 .Dropdown-control {
-    @apply transition-none;
+    @apply !transition-none;
 }
 
 .Dropdown-root.is-open .Dropdown-control {

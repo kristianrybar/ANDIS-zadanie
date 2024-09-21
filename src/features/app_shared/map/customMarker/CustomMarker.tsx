@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { Marker, Popup, Tooltip } from 'react-leaflet'
 import { TDefect } from '~/pageDefectsManager/_t/TDefect'
-import './custom.css'
 import UiInput from '~/app_shared/ui_input/UiInput'
+import css from './CustomMarker.module.css'
 
 type Props = {
     defect: TDefect
@@ -11,7 +11,8 @@ type Props = {
 }
 
 const CustomMarker = (props: Props) => {
-
+    const d = props.defect
+    
     const refMarker = useRef<any>(null)
 
     useEffect(() => {
@@ -23,9 +24,6 @@ const CustomMarker = (props: Props) => {
         refMarker.current.openPopup()
     }, [])
     
-    const d = props.defect
-
-    console.log(props.checked)
     return (
         <Marker
             ref={refMarker}
@@ -35,19 +33,20 @@ const CustomMarker = (props: Props) => {
             <Tooltip>
                 <div 
                     className={`
-                        ${props.checked && 'outline outline-offset-8 outline-[green]'}
+                        ${css.tooltipInner}
+                        ${props.checked && css.checked}
                     `}
                 >
                     <div>
-                        <span className='text-green-400 text-base font-semibold'>{props.checked && 'Označený'}</span>
+                        <span>{props.checked && 'Označený'}</span>
                     </div>
                     {d.technicalObject.technicalObjectName}
                 </div>
             </Tooltip>
             <Popup>
-                <div className=''>
+                <div className={css.popup}>
                     <UiInput
-                        wrapperClassName={`${props.checked && 'text-green-400 !font-semibold'}`}
+                        wrapperClassName={`${props.checked && css.checked}`}
                         label={props.checked ? 'Označený' : 'Označiť nedostatok'}
                         type='checkbox'
                         checked={props.checked || false}

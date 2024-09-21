@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { TDefect } from '../_t/TDefect'
 import { TFilter } from '../_t/TFilter'
+import { isValidDateFormat } from './_utils/isValidDateFormat'
 import useDefectsFiltering from './_hooks/useDefectsFiltering'
 import DisplayControlBar from './displayControlBar/DisplayControlBar'
 import FilterControlBar from './filterControlBar/FilterControlBar'
@@ -32,6 +33,22 @@ const Defects = (props: Props) => {
 
     const { filterDefects } = useDefectsFiltering(props.filters)
 
+
+    const onSelectDate = (e, key: 'startDate' | 'endDate') => {
+        setDateFilter(prev => ({...prev, [key]: ''})) // clear
+
+        const value = e?.target?.value
+        if (!value) 
+            return
+        const isValid = isValidDateFormat(value)
+        if (!isValid) {
+            alert('Neplatný formát dátumu. Zadajte dátum v správnom formáte.')
+            return
+        }
+
+        setDateFilter(prev => ({...prev, [key]: value}))
+    }
+
     // EFFECTS
     useEffect(() => {
         const _filteredDefects = filterDefects(props.defects, dropdownQuery, searchQuery, dateFilter)
@@ -57,8 +74,8 @@ const Defects = (props: Props) => {
 
             <FilterControlBar
                 // date from/to
-                onSelectStartDate={(e) => setDateFilter(prev => ({...prev, startDate: e?.target?.value}))}
-                onSelectEndDate={(e) => setDateFilter(prev => ({...prev, endDate: e?.target?.value}))}
+                onSelectStartDate={(e) => onSelectDate(e, 'startDate')}
+                onSelectEndDate={(e) => onSelectDate(e, 'endDate')}
                 // searchbar
                 onSearchQuery={(e) => set_searchQuery(e.target.value)}
                 searchQuery={searchQuery}

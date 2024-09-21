@@ -1,0 +1,14 @@
+.tooltipInner {
+    &.checked {
+        @apply outline outline-offset-8 outline-[green];
+    }
+    span {
+        @apply text-green-400 text-base font-semibold;
+    }
+}
+
+.popup {
+    &.checked {
+        @apply text-green-400 !font-semibold;
+    }
+}

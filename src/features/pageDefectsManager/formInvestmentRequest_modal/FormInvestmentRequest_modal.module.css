@@ -38,6 +38,10 @@
     }
     .footer {
         @apply absolute bottom-0 left-0 right-0 bg-[--color1] w-full flex justify-end self-end mt-auto gap-5 p-5 border-t border-[--color4];
+
+        .submitButton {
+            @apply min-w-20 flex justify-center items-center;
+        }
     }
 
     .error {

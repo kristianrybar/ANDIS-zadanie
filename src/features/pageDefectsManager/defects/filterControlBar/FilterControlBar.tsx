@@ -20,26 +20,27 @@ type Props = {
 const FilterControlBar = (props: Props) => {
     return (
         <div className={css.filterControlBar}>
-            <div className={css.datePickerRange}>
+            <div>
                 <UiDatePickerRange
                     onSelectStartDate={props.onSelectStartDate}
                     onSelectEndDate={props.onSelectEndDate}
                 /> 
             </div>
-            <div className={css.searchbar}>
+            <div>
                 <UiInput
                     value={props.searchQuery || ''}
                     onChange={props.onSearchQuery}
                     width='300px'
                 />
             </div>
-            <div className={css.dropdown}>
+            <div>
                 <UiDropdown
                     options={props.dropdownOptions}
                     value={props.dropdownQuery || ''}
                     onChange={props.onChangeDropdown}
-                    showIcon={true}
                     onClearOption={props.onClearOption}
+                    showIcon={true}
+                    width='150px'
                 />
             </div>
         </div>

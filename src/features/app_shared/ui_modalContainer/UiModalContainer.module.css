@@ -1,5 +1,5 @@
 .backdrop {
-    @apply z-[21] fixed top-0 left-0 right-0 bottom-0 bg-transparent;
+    @apply fixed top-0 left-0 right-0 bottom-0 bg-transparent;
     backdrop-filter: blur(8px);
     background: rgba(52, 64, 84, 0.70);
 

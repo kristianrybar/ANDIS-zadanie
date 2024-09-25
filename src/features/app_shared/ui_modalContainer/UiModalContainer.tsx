@@ -6,11 +6,17 @@ type Props = {
     minHeight?: string
     height?: string
     maxWidth?: string
+    zIndex?: number
 }
 
 const UiModalContainer = (props: Props) => {
     return (
-        <div className={css.backdrop} >
+        <div 
+            className={css.backdrop}
+            style={{
+                zIndex: props.zIndex || 21,
+            }}
+        >
             <div 
                 className={css.modal_container}
                 style={{

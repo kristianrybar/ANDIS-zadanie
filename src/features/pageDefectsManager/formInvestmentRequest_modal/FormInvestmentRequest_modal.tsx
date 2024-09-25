@@ -96,6 +96,7 @@ const FormInvestmentRequest_modal = (props: Props) => {
     <UiModalContainer
       maxHeight='90%'
       maxWidth='1100px'
+      zIndex={1001}
     >
       <header className={css.header}>
         <h1>Vytvorenie investičnej požiadavky</h1>
